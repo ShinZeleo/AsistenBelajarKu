@@ -3,8 +3,8 @@
 Aplikasi desktop untuk membantu siswa mengelola jadwal pelajaran dan tugas.
 
 **Tim:**
-- ShinZeleo (Kamu)
-- Imam
+- Imam (Kamu)
+- Ryan
 - Akram
 
 **Tema:** Pendidikan
