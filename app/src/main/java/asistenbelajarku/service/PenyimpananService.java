@@ -3,6 +3,8 @@ package asistenbelajarku.service;
 import asistenbelajarku.model.DataAplikasi;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import java.io.File;
+import java.io.IOException;
 
 public class PenyimpananService implements iPenyimpananService {
 
@@ -16,10 +18,12 @@ public class PenyimpananService implements iPenyimpananService {
 
     @Override
     public void simpanSemuaData(DataAplikasi dataAplikasi) {
-        // TODO (Ryan): Implementasikan logika untuk menyimpan objek DataAplikasi ke file (misal NAMA_FILE_DATA).
-        // Penjelasan: Gunakan library JSON (seperti Jackson) untuk mengubah objek DataAplikasi menjadi string JSON,
-        //           lalu tulis string tersebut ke file. Tangani potensi IOException dengan try-catch
-        //           atau try-with-resources. Berikan pesan ke konsol jika berhasil atau gagal.
+        try {
+            objectMapper.writeValue(new File(NAMA_FILE_DATA), dataAplikasi);
+            System.out.println("Data berhasil disimpan ke " + NAMA_FILE_DATA);
+        } catch (IOException e) {
+            System.err.println("Gagal menyimpan data: " + e.getMessage());
+        }
     }
 
     @Override
