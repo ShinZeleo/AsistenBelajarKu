@@ -55,6 +55,40 @@ public class App extends Application {
         primaryStage.show();
     }
 
+    public void showManajemenJadwalScene() throws IOException {
+        URL fxmlLocation = getClass().getResource("/fxml/ManajemenJadwalScene.fxml");
+        if (fxmlLocation == null) {
+            System.err.println("Tidak dapat menemukan ManajemenJadwalScene.fxml.");
+            return;
+        }
+
+        FXMLLoader loader = new FXMLLoader(fxmlLocation);
+        Parent root = loader.load();
+        ManajemenJadwalController controller = loader.getController();
+        controller.setApp(this);
+        controller.setData(dataAplikasi);
+
+        Scene scene = new Scene(root, 800, 600);
+        primaryStage.setScene(scene);
+    }
+
+    public void showManajemenTugasScene() throws IOException {
+        URL fxmlLocation = getClass().getResource("/fxml/ManajemenTugasScene.fxml");
+        if (fxmlLocation == null) {
+            System.err.println("Tidak dapat menemukan ManajemenTugasScene.fxml.");
+            return;
+        }
+
+        FXMLLoader loader = new FXMLLoader(fxmlLocation);
+        Parent root = loader.load();
+        ManajemenTugasController controller = loader.getController();
+        controller.setApp(this);
+        controller.setData(dataAplikasi);
+
+        Scene scene = new Scene(root, 800, 600);
+        primaryStage.setScene(scene);
+    }
+
     public static void main(String[] args) {
         // TODO (Tim): Pastikan metode ini hanya memanggil launch(args) dan tidak ada logika aplikasi lain di sini.
         // Penjelasan: Metode main() ini adalah titik masuk standar untuk aplikasi Java,
