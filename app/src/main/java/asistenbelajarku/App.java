@@ -1,18 +1,16 @@
+```java
 package asistenbelajarku;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import java.io.IOException;
-import java.net.URL;
+import asistenbelajarku.service.PenyimpananService;
+import asistenbelajarku.model.DataAplikasi;
 
 public class App extends Application {
+    private Stage primaryStage;
+    private DataAplikasi dataAplikasi;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        // TODO (Ryan/Akram): Implementasikan pemuatan file FXML untuk scene utama (DashboardScene.fxml).
+        // TODO (Ryan): Implementasikan pemuatan file FXML untuk scene utama (DashboardScene.fxml).
         // Penjelasan: Gunakan FXMLLoader untuk memuat file FXML dari folder resources/fxml/.
         //           Buat objek Scene dari hasil load FXML tersebut.
         //           Atur judul untuk primaryStage (misalnya, "AsistenBelajarKu").
@@ -21,22 +19,15 @@ public class App extends Application {
         //           Pastikan path ke FXML sudah benar (misalnya, "/fxml/DashboardScene.fxml").
         //           Atur juga ukuran awal window (lebar dan tinggi) yang sesuai untuk Scene.
 
-                // --- Implementasi TODO ---
-        // Pastikan path "/fxml/DashboardScene.fxml" benar relatif terhadap folder 'resources'
-        URL fxmlLocation = getClass().getResource("/fxml/DashboardScene.fxml");
-        if (fxmlLocation == null) {
-            System.err.println("Tidak dapat menemukan file FXML. Pastikan path sudah benar.");
-            // Anda bisa throw IOException atau menangani error ini lebih lanjut
-            throw new IOException("File FXML tidak ditemukan di path tersebut.");
-        }
+        this.primaryStage = primaryStage;
+        PenyimpananService penyimpananService = new PenyimpananService();
+        this.dataAplikasi = penyimpananService.muatSemuaData();
 
-        Parent root = FXMLLoader.load(fxmlLocation); // FXMLLoader.load() akan memuat FXML
-        Scene scene = new Scene(root, 900, 600); // Lebar 900, Tinggi 600 (sesuai prefWidth/prefHeight di FXML)
+        showDashboardScene();
+    }
 
-        primaryStage.setTitle("AsistenBelajarKu");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        // --- Akhir Implementasi TODO ---
+    private void showDashboardScene() throws IOException {
+        // Placeholder untuk metode yang akan diimplementasikan di commit berikutnya
     }
 
     public static void main(String[] args) {
@@ -47,3 +38,4 @@ public class App extends Application {
         launch(args);
     }
 }
+```
