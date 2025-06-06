@@ -28,11 +28,16 @@ public class PenyimpananService implements iPenyimpananService {
 
     @Override
     public DataAplikasi muatSemuaData() {
-        // TODO (Ryan): Implementasikan logika untuk memuat objek DataAplikasi dari file.
-        // Penjelasan: Baca konten file JSON, lalu gunakan library JSON untuk mengubah string JSON
-        //           menjadi objek DataAplikasi. Jika file tidak ada atau terjadi error saat membaca/parsing,
-        //           kembalikan objek DataAplikasi baru yang kosong (bukan null) untuk menghindari NullPointerException
-        //           di bagian lain aplikasi. Tangani IOException. Berikan pesan ke konsol.
-        return null; // Placeholder
+        File file = new File(NAMA_FILE_DATA);
+        if (!file.exists()) {
+            System.out.println("File tidak ditemukan, mengembalikan DataAplikasi kosong.");
+            return new DataAplikasi();
+        }
+        try {
+            return objectMapper.readValue(file, DataAplikasi.class);
+        } catch (IOException e) {
+            System.err.println("Gagal memuat data: " + e.getMessage());
+            return new DataAplikasi();
+        }
     }
 }
