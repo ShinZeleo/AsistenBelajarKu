@@ -1,19 +1,17 @@
 package asistenbelajarku.service;
 
 import asistenbelajarku.model.DataAplikasi;
-// import com.fasterxml.jackson.databind.ObjectMapper; // Contoh jika pakai Jackson JSON
-// import lainnya yang dibutuhkan untuk file I/O dan JSON processing
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class PenyimpananService implements iPenyimpananService {
 
     private static final String NAMA_FILE_DATA = "asisten_belajar_data.json";
-    // private ObjectMapper objectMapper; // Atribut jika menggunakan Jackson
+    private final ObjectMapper objectMapper;
 
     public PenyimpananService() {
-        // TODO (Ryan): Inisialisasi komponen yang dibutuhkan untuk penyimpanan.
-        // Penjelasan: Jika menggunakan library seperti Jackson untuk JSON, inisialisasi ObjectMapper di sini.
-        //           Pastikan mengkonfigurasi ObjectMapper untuk menangani tipe data Java Time (LocalDate, LocalTime)
-        //           jika library tersebut membutuhkannya (misalnya dengan JavaTimeModule).
+        objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
     }
 
     @Override
