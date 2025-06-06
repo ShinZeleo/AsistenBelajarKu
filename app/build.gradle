@@ -18,14 +18,13 @@ repositories {
 }
 
 dependencies {
-    // Use JUnit Jupiter for testing.
-    // Jika tidak menggunakan test, baris berikut bisa dihapus atau dikomentari
-    // testImplementation libs.junit.jupiter 
-    // testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    // ... dependensi lain jika ada ...
 
-    // This dependency is used by the application.
-    // Jika Guava tidak digunakan, baris berikut bisa dihapus atau dikomentari
-    // implementation libs.guava 
+    // Jackson Databind (inti)
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3' // Gunakan versi stabil terbaru
+    // Jackson Datatype JSR310 (untuk menangani LocalDate, LocalTime, dll.)
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.3' // Gunakan versi stabil terbaru
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.15.3'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -37,7 +36,7 @@ java {
 
 // Konfigurasi JavaFX dipindahkan ke sini, di bawah blok java atau dependencies
 javafx {
-    version = "17.0.10" // Pastikan versi ini kompatibel dengan JDK 21 Anda, atau gunakan versi lebih baru jika perlu (misal "21" atau "22")
+    version = "21.0.2" // Pastikan versi ini kompatibel dengan JDK 21 Anda, atau gunakan versi lebih baru jika perlu (misal "21" atau "22")
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
