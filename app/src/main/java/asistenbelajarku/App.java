@@ -1,8 +1,13 @@
-```java
 package asistenbelajarku;
 
 import asistenbelajarku.service.PenyimpananService;
 import asistenbelajarku.model.DataAplikasi;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.io.IOException;
+import java.net.URL;
 
 public class App extends Application {
     private Stage primaryStage;
@@ -27,7 +32,27 @@ public class App extends Application {
     }
 
     private void showDashboardScene() throws IOException {
-        // Placeholder untuk metode yang akan diimplementasikan di commit berikutnya
+        URL fxmlLocation = getClass().getResource("/fxml/DashboardScene.fxml");
+        if (fxmlLocation == null) {
+            // Anda bisa throw IOException atau menangani error ini lebih lanjut
+            System.err.println("Tidak dapat menemukan DashboardScene.fxml.");
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "File FXML tidak ditemukan. Aplikasi akan ditutup.");
+            alert.showAndWait();
+            System.exit(1);
+        }
+
+        FXMLLoader loader = new FXMLLoader(fxmlLocation);
+        Parent root = loader.load();
+        DashboardController controller = loader.getController();
+        controller.setApp(this);
+        controller.setData(dataAplikasi);
+
+        Scene scene = new Scene(root, 900, 600);
+        primaryStage.setTitle("AsistenBelajarKu");
+        primaryStage.setMinWidth(600);
+        primaryStage.setMinHeight(400);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
@@ -38,4 +63,3 @@ public class App extends Application {
         launch(args);
     }
 }
-```
