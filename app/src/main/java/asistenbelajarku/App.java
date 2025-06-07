@@ -28,6 +28,11 @@ public class App extends Application {
         showDashboardScene();
     }
 
+    /**
+     * Menampilkan scene dashboard utama dengan memuat DashboardScene.fxml.
+     * Mengatur controller dan data aplikasi, serta menampilkan primaryStage.
+     * @throws IOException Jika file FXML tidak ditemukan atau gagal dimuat
+     */
     private void showDashboardScene() throws IOException {
         URL fxmlLocation = getClass().getResource("/fxml/DashboardScene.fxml");
         if (fxmlLocation == null) {
