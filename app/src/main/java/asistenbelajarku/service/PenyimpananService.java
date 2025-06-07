@@ -29,8 +29,8 @@ public class PenyimpananService implements iPenyimpananService {
             System.err.println("Gagal menyimpan data: Objek DataAplikasi adalah null.");
             return;
         }
-        try {
-            objectMapper.writeValue(new File(NAMA_FILE_DATA), dataAplikasi);
+        try (FileWriter writer = new FileWriter(NAMA_FILE_DATA)) {
+            objectMapper.writeValue(writer, dataAplikasi);
             System.out.println("Data berhasil disimpan ke " + NAMA_FILE_DATA);
         } catch (IOException e) {
             System.err.println("Gagal menyimpan data: " + e.getMessage());
@@ -44,8 +44,8 @@ public class PenyimpananService implements iPenyimpananService {
             System.out.println("File tidak ditemukan, mengembalikan DataAplikasi kosong.");
             return new DataAplikasi();
         }
-        try {
-            return objectMapper.readValue(file, DataAplikasi.class);
+        try (FileReader reader = new FileReader(file)) {
+            return objectMapper.readValue(reader, DataAplikasi.class);
         } catch (IOException e) {
             System.err.println("Gagal memuat data: " + e.getMessage());
             return new DataAplikasi();
