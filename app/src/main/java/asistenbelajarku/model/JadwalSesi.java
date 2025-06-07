@@ -69,6 +69,16 @@ public class JadwalSesi extends EntitasAkademik {
 
     @Override
     public String getRingkasanTampilan() {
-        return this.mataPelajaran.getNamaMapel() + " | " + this.hari + " | " + this.waktuMulai + " - " + this.waktuSelesai + " (" + this.ruangan + ")";
-    }
+    String namaMapel = (this.mataPelajaran != null) ? this.mataPelajaran.getNamaMapel() : "Tanpa Mapel";
+    
+    String infoRuangan = (this.ruangan != null && !this.ruangan.isEmpty()) ? " (" + this.ruangan + ")" : "";
+
+    return String.format("%s | %s | %s - %s%s", 
+        namaMapel, 
+        this.hari, 
+        this.waktuMulai, 
+        this.waktuSelesai, 
+        infoRuangan
+    );
+}
 }
