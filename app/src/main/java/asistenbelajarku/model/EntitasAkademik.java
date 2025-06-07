@@ -2,12 +2,14 @@ package asistenbelajarku.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public abstract class EntitasAkademik {
     protected String namaDeskriptif;
     protected LocalDate tanggalDibuat;
 
     protected EntitasAkademik() {
-        
+
     }
 
     public EntitasAkademik(String namaDeskriptif) {
@@ -31,7 +33,10 @@ public abstract class EntitasAkademik {
         return this.tanggalDibuat;
     }
     
+    @JsonIgnore 
     public abstract String getJenisEntitas();
+
+    @JsonIgnore
     public abstract String getRingkasanTampilan();
 
 }
