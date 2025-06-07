@@ -9,6 +9,10 @@ public class JadwalSesi extends EntitasAkademik {
     private MataPelajaran mataPelajaran;
     private String ruangan; // Opsional
 
+    public JadwalSesi() {
+        super();
+    }
+
     public JadwalSesi(String namaDeskriptifSesi, String hari, LocalTime waktuMulai, LocalTime waktuSelesai, MataPelajaran mataPelajaran, String ruangan) {
         super(namaDeskriptifSesi);
         this.hari = hari;
