@@ -6,6 +6,10 @@ public abstract class EntitasAkademik {
     protected String namaDeskriptif;
     protected LocalDate tanggalDibuat;
 
+    protected EntitasAkademik() {
+        
+    }
+
     public EntitasAkademik(String namaDeskriptif) {
         this.namaDeskriptif = namaDeskriptif;
         this.tanggalDibuat = LocalDate.now();
