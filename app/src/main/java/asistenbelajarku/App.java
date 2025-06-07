@@ -1,6 +1,7 @@
 package asistenbelajarku;
 
-import javafx.application.Application;
+import asistenbelajarku.service.PenyimpananService;
+import asistenbelajarku.model.DataAplikasi;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,10 +10,12 @@ import java.io.IOException;
 import java.net.URL;
 
 public class App extends Application {
+    private Stage primaryStage;
+    private DataAplikasi dataAplikasi;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        // TODO (Ryan/Akram): Implementasikan pemuatan file FXML untuk scene utama (DashboardScene.fxml).
+        // TODO (Ryan): Implementasikan pemuatan file FXML untuk scene utama (DashboardScene.fxml).
         // Penjelasan: Gunakan FXMLLoader untuk memuat file FXML dari folder resources/fxml/.
         //           Buat objek Scene dari hasil load FXML tersebut.
         //           Atur judul untuk primaryStage (misalnya, "AsistenBelajarKu").
@@ -21,22 +24,69 @@ public class App extends Application {
         //           Pastikan path ke FXML sudah benar (misalnya, "/fxml/DashboardScene.fxml").
         //           Atur juga ukuran awal window (lebar dan tinggi) yang sesuai untuk Scene.
 
-                // --- Implementasi TODO ---
-        // Pastikan path "/fxml/DashboardScene.fxml" benar relatif terhadap folder 'resources'
+        this.primaryStage = primaryStage;
+        PenyimpananService penyimpananService = new PenyimpananService();
+        this.dataAplikasi = penyimpananService.muatSemuaData();
+
+        showDashboardScene();
+    }
+
+    private void showDashboardScene() throws IOException {
         URL fxmlLocation = getClass().getResource("/fxml/DashboardScene.fxml");
         if (fxmlLocation == null) {
-            System.err.println("Tidak dapat menemukan file FXML. Pastikan path sudah benar.");
             // Anda bisa throw IOException atau menangani error ini lebih lanjut
-            throw new IOException("File FXML tidak ditemukan di path tersebut.");
+            System.err.println("Tidak dapat menemukan DashboardScene.fxml.");
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "File FXML tidak ditemukan. Aplikasi akan ditutup.");
+            alert.showAndWait();
+            System.exit(1);
         }
 
-        Parent root = FXMLLoader.load(fxmlLocation); // FXMLLoader.load() akan memuat FXML
-        Scene scene = new Scene(root, 900, 600); // Lebar 900, Tinggi 600 (sesuai prefWidth/prefHeight di FXML)
+        FXMLLoader loader = new FXMLLoader(fxmlLocation);
+        Parent root = loader.load();
+        DashboardController controller = loader.getController();
+        controller.setApp(this);
+        controller.setData(dataAplikasi);
 
+        Scene scene = new Scene(root, 900, 600);
         primaryStage.setTitle("AsistenBelajarKu");
+        primaryStage.setMinWidth(600);
+        primaryStage.setMinHeight(400);
         primaryStage.setScene(scene);
         primaryStage.show();
-        // --- Akhir Implementasi TODO ---
+    }
+
+    public void showManajemenJadwalScene() throws IOException {
+        URL fxmlLocation = getClass().getResource("/fxml/ManajemenJadwalScene.fxml");
+        if (fxmlLocation == null) {
+            System.err.println("Tidak dapat menemukan ManajemenJadwalScene.fxml.");
+            return;
+        }
+
+        FXMLLoader loader = new FXMLLoader(fxmlLocation);
+        Parent root = loader.load();
+        ManajemenJadwalController controller = loader.getController();
+        controller.setApp(this);
+        controller.setData(dataAplikasi);
+
+        Scene scene = new Scene(root, 800, 600);
+        primaryStage.setScene(scene);
+    }
+
+    public void showManajemenTugasScene() throws IOException {
+        URL fxmlLocation = getClass().getResource("/fxml/ManajemenTugasScene.fxml");
+        if (fxmlLocation == null) {
+            System.err.println("Tidak dapat menemukan ManajemenTugasScene.fxml.");
+            return;
+        }
+
+        FXMLLoader loader = new FXMLLoader(fxmlLocation);
+        Parent root = loader.load();
+        ManajemenTugasController controller = loader.getController();
+        controller.setApp(this);
+        controller.setData(dataAplikasi);
+
+        Scene scene = new Scene(root, 800, 600);
+        primaryStage.setScene(scene);
     }
 
     public static void main(String[] args) {

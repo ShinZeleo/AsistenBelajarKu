@@ -5,37 +5,41 @@ public class MataPelajaran {
     private String namaGuru; // Opsional
 
     public MataPelajaran(String namaMapel, String namaGuru) {
-        // TODO (Akram): Inisialisasi atribut namaMapel dan namaGuru.
+        this.namaMapel = namaMapel;
+        this.namaGuru = namaGuru;
     }
 
     public MataPelajaran(String namaMapel) {
-        // TODO (Akram): Inisialisasi atribut namaMapel, dan set namaGuru ke null atau string kosong.
-        //               Ini adalah konstruktor alternatif jika namaGuru tidak wajib.
+        this.namaMapel = namaMapel;
+        this.namaGuru = null;
     }
 
     public String getNamaMapel() {
-        // TODO (Akram): Kembalikan nilai atribut namaMapel.
-        return null; // Placeholder
+        return this.namaMapel;
     }
 
     public void setNamaMapel(String namaMapel) {
-        // TODO (Akram): Atur nilai atribut namaMapel. Pertimbangkan validasi (tidak null/kosong).
+        if (namaMapel != null && !namaMapel.isEmpty()) {
+            this.namaMapel = namaMapel;
+        } else {
+            throw new IllegalArgumentException("Nama mata pelajaran tidak boleh null atau kosong.");
+        }
     }
 
     public String getNamaGuru() {
-        // TODO (Akram): Kembalikan nilai atribut namaGuru.
-        return null; // Placeholder
+        return this.namaGuru;
     }
 
     public void setNamaGuru(String namaGuru) {
-        // TODO (Akram): Atur nilai atribut namaGuru.
+        this.namaGuru = namaGuru;
     }
 
     @Override
     public String toString() {
-        // TODO (Akram): Implementasikan representasi String dari objek MataPelajaran.
-        // Penjelasan: Berguna untuk debugging dan mungkin untuk menampilkan objek ini di ComboBox
-        //           atau komponen UI lain secara default. Contoh: "Matematika (Bu Retno)" atau "Fisika".
-        return ""; // Placeholder
+        if (this.namaGuru != null) {
+            return this.namaMapel + " (" + this.namaGuru + ")";
+        } else {
+            return this.namaMapel;
+        }
     }
 }
