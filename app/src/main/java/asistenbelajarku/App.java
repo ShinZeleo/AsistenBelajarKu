@@ -24,6 +24,10 @@ public class App extends Application {
         this.primaryStage = primaryStage;
         PenyimpananService penyimpananService = new PenyimpananService();
         this.dataAplikasi = penyimpananService.muatSemuaData();
+        if (dataAplikasi == null) {
+            System.err.println("Gagal memuat data aplikasi: DataAplikasi null.");
+            dataAplikasi = new DataAplikasi();
+        }
 
         showDashboardScene();
     }
