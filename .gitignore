@@ -1,8 +1,22 @@
-# Ignore Gradle project-specific cache directory
+# Gradle
 .gradle
+/build/
+/bin/
 
-# Ignore Gradle build output directory
-build
-bin
+# IDE Files
+.idea/
+*.iws
+*.iml
+*.ipr
+/out/
+.vscode/
 
-.vscode
+# Log files
+*.log
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# File data aplikasi
+/asisten_belajar_data.json

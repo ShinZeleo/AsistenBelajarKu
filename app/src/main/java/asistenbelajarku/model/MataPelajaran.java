@@ -4,6 +4,10 @@ public class MataPelajaran {
     private String namaMapel;
     private String namaGuru; // Opsional
 
+    public MataPelajaran() {
+        // Konstruktor kosong
+    }
+
     public MataPelajaran(String namaMapel, String namaGuru) {
         this.namaMapel = namaMapel;
         this.namaGuru = namaGuru;

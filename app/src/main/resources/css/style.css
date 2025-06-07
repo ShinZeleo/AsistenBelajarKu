@@ -1,0 +1,162 @@
+/* style.css */
+
+/* --- Global Styling --- */
+.root {
+    -fx-font-family: "System", Arial, sans-serif;
+    -fx-base: #F4F6F8;
+    -fx-background: #F4F6F8;
+    -fx-control-inner-background: #FFFFFF;
+    -fx-focus-color: #007bff;
+    -fx-accent: #007bff;
+}
+
+/* --- Header Styling --- */
+.header-box {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 15px 25px;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 0 0 1px 0;
+    -fx-alignment: center-left;
+}
+
+.app-title { /* Untuk "AsistenBelajarKu" di header */
+    -fx-font-size: 1.8em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.page-title { /* Untuk "Dashboard", "Manajemen Tugas", dll. di header kanan */
+    -fx-font-size: 1.5em;
+    -fx-text-fill: #555555;
+    -fx-font-weight: normal;
+}
+
+/* --- Tombol Umum --- */
+.button {
+    -fx-background-radius: 6px;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 18px;
+    -fx-cursor: hand;
+}
+
+/* Tombol Utama (Primary) - Warna bisa disesuaikan per scene */
+.button-primary-blue {
+    -fx-background-color: #3B82F6;
+    -fx-text-fill: white;
+}
+.button-primary-blue:hover {
+    -fx-background-color: #2563EB;
+}
+
+.button-primary-green {
+    -fx-background-color: #10B981;
+    -fx-text-fill: white;
+}
+.button-primary-green:hover {
+    -fx-background-color: #059669;
+}
+
+/* Tombol Sekunder/Edit */
+.button-secondary {
+    -fx-background-color: #6C757D;
+    -fx-text-fill: white;
+}
+.button-secondary:hover {
+    -fx-background-color: #5A6268;
+}
+
+/* Tombol Hapus (Danger) */
+.button-danger {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #DC3545;
+    -fx-border-color: #DC3545;
+    -fx-border-width: 1px;
+}
+.button-danger:hover {
+    -fx-background-color: #f8d7da;
+}
+
+/* --- Styling untuk Konten Card/Section --- */
+.content-card {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 20px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0.3, 0, 2);
+}
+
+/* Judul di dalam card, misal "Jadwal Hari Ini" */
+.section-title-card {
+    -fx-font-size: 1.3em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-padding: 0 0 10px 0;
+}
+
+/* Styling untuk ListView */
+.list-view {
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+/* Styling untuk setiap item di ListView */
+.list-cell {
+    -fx-padding: 8px 5px;
+    -fx-border-color: #F0F0F0;
+    -fx-border-width: 0 0 1px 0;
+    -fx-background-color: transparent;
+}
+.list-cell:empty {
+    -fx-border-width: 0;
+}
+.list-cell:selected {
+    -fx-background-color: #E0E8F0;
+}
+
+/* Styling untuk TableView */
+.table-view {
+    -fx-border-color: #DFE2E5;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+}
+.table-view .column-header-background {
+    -fx-background-color: #F4F6F8;
+}
+.table-view .column-header .label {
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+    -fx-padding: 8px;
+}
+.table-view .table-cell {
+    -fx-padding: 8px;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 0 0 1px 0;
+}
+
+/* Styling untuk Form */
+.form-container {
+    -fx-padding: 20px;
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 8px;
+}
+
+.form-label {
+    -fx-font-size: 0.95em;
+    -fx-text-fill: #444444;
+    -fx-padding: 5px 0 2px 0;
+}
+
+.text-field, .text-area, .combo-box, .date-picker {
+    -fx-pref-height: 38px;
+    -fx-font-size: 0.95em;
+    -fx-border-color: #CED4DA;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+.text-area {
+    -fx-pref-height: 80px;
+}
+.text-field:focused, .text-area:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: #007bff;
+    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.25), 5, 0, 0, 0);
+}

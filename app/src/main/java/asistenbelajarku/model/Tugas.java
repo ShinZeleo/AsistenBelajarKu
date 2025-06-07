@@ -1,12 +1,17 @@
 package asistenbelajarku.model;
 
 import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonIgnore; 
 
 public class Tugas extends EntitasAkademik {
     private String detailDeskripsiTugas;
     private LocalDate tanggalTenggat;
     private boolean selesai;
     private MataPelajaran mataPelajaranTerkait; // Opsional
+
+    public Tugas() {
+        super();
+    }
 
     public Tugas(String namaDeskriptif, String detailDeskripsiTugas, LocalDate tanggalTenggat, MataPelajaran mataPelajaranTerkait) {
         super(namaDeskriptif);
@@ -53,6 +58,7 @@ public class Tugas extends EntitasAkademik {
         return "Tugas";
     }
 
+    @JsonIgnore
     @Override
     public String getRingkasanTampilan() {
         String status = this.selesai ? "Selesai" : "Belum Selesai";
