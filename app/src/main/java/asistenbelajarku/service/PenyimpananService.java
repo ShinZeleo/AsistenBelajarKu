@@ -40,15 +40,15 @@ public class PenyimpananService implements iPenyimpananService {
     @Override
     public DataAplikasi muatSemuaData() {
         File file = new File(NAMA_FILE_DATA);
-        if (!file.exists()) {
-            System.out.println("File tidak ditemukan, mengembalikan DataAplikasi kosong.");
-            return new DataAplikasi();
+        if (!file.exists() || file.length() == 0) {
+            System.out.println("File '" + NAMA_FILE_DATA + "' tidak ditemukan atau kosong. Mengembalikan DataAplikasi baru (kosong).");
+            return new DataAplikasi(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
         }
         try (FileReader reader = new FileReader(file)) {
             return objectMapper.readValue(reader, DataAplikasi.class);
         } catch (IOException e) {
             System.err.println("Gagal memuat data: " + e.getMessage());
-            return new DataAplikasi();
+            return new DataAplikasi(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
         }
     }
 }
