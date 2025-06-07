@@ -56,6 +56,11 @@ public class App extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Menampilkan scene manajemen jadwal dengan memuat ManajemenJadwalScene.fxml.
+     * Mengatur controller dan data aplikasi untuk scene ini.
+     * @throws IOException Jika file FXML tidak ditemukan atau gagal dimuat
+     */
     public void showManajemenJadwalScene() throws IOException {
         URL fxmlLocation = getClass().getResource("/fxml/ManajemenJadwalScene.fxml");
         if (fxmlLocation == null) {
@@ -73,6 +78,11 @@ public class App extends Application {
         primaryStage.setScene(scene);
     }
 
+    /**
+     * Menampilkan scene manajemen tugas dengan memuat ManajemenTugasScene.fxml.
+     * Mengatur controller dan data aplikasi untuk scene ini.
+     * @throws IOException Jika file FXML tidak ditemukan atau gagal dimuat
+     */
     public void showManajemenTugasScene() throws IOException {
         URL fxmlLocation = getClass().getResource("/fxml/ManajemenTugasScene.fxml");
         if (fxmlLocation == null) {
