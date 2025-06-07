@@ -25,6 +25,10 @@ public class PenyimpananService implements iPenyimpananService {
 
     @Override
     public void simpanSemuaData(DataAplikasi dataAplikasi) {
+        if (dataAplikasi == null) {
+            System.err.println("Gagal menyimpan data: Objek DataAplikasi adalah null.");
+            return;
+        }
         try {
             objectMapper.writeValue(new File(NAMA_FILE_DATA), dataAplikasi);
             System.out.println("Data berhasil disimpan ke " + NAMA_FILE_DATA);
