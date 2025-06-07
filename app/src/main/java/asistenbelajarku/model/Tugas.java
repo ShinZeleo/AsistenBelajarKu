@@ -8,6 +8,10 @@ public class Tugas extends EntitasAkademik {
     private boolean selesai;
     private MataPelajaran mataPelajaranTerkait; // Opsional
 
+    public Tugas() {
+        super();
+    }
+
     public Tugas(String namaDeskriptif, String detailDeskripsiTugas, LocalDate tanggalTenggat, MataPelajaran mataPelajaranTerkait) {
         super(namaDeskriptif);
         this.detailDeskripsiTugas = detailDeskripsiTugas;
