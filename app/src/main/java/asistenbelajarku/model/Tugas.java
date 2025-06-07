@@ -1,6 +1,7 @@
 package asistenbelajarku.model;
 
 import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonIgnore; 
 
 public class Tugas extends EntitasAkademik {
     private String detailDeskripsiTugas;
@@ -57,6 +58,7 @@ public class Tugas extends EntitasAkademik {
         return "Tugas";
     }
 
+    @JsonIgnore
     @Override
     public String getRingkasanTampilan() {
         String status = this.selesai ? "Selesai" : "Belum Selesai";
