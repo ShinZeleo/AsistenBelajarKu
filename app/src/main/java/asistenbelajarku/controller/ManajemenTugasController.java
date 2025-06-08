@@ -34,7 +34,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class ManajemenTugasController<Tugas> implements Initializable {
+public class ManajemenTugasController implements Initializable {
 
     @FXML private TableView<Tugas> tugasTableView;
     @FXML private TableColumn<Tugas, String> kolomDeskripsiTugas;
