@@ -54,10 +54,10 @@
             </VBox>
         </HBox>
     </center>
-    <bottom>
+     <bottom>
         <HBox alignment="CENTER_RIGHT" prefHeight="50.0" styleClass="header-box" spacing="10">
             <padding><Insets right="20.0" /></padding>
             <Button fx:id="kembaliKeDashboardButtonTugas" onAction="#handleKembaliKeDashboardButtonTugasAction" text="Kembali ke Dashboard" />
         </HBox>
     </bottom>
-</BorderPane>
+</BorderPane>       

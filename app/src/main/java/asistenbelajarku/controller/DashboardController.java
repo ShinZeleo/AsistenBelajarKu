@@ -3,8 +3,8 @@ package asistenbelajarku.controller;
 import asistenbelajarku.model.DataAplikasi;
 import asistenbelajarku.model.JadwalSesi;
 import asistenbelajarku.model.Tugas;
-import asistenbelajarku.service.iPenyimpananService; // Pastikan nama interface ini benar
-import asistenbelajarku.service.PenyimpananService; // Implementasi konkret
+import asistenbelajarku.service.iPenyimpananService; 
+import asistenbelajarku.service.PenyimpananService; 
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,12 +16,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Comparator; // Untuk sorting
+import java.time.LocalDate;
+import java.util.Comparator; 
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -29,14 +31,11 @@ public class DashboardController implements Initializable {
 
     @FXML private ListView<String> jadwalHariIniListView;
     @FXML private ListView<String> tugasMendatangListView;
-    @FXML private Button kelolaJadwalButtonHeader; // Pastikan fx:id ini ada di FXML Anda
-    @FXML private Button kelolaTugasButtonHeader;  // Pastikan fx:id ini ada di FXML Anda
-    // TODO (Imam): Deklarasikan @FXML untuk tombol lain di sidebar jika mereka punya aksi dari sini
-    // @FXML private Button mimeSugurButton;
-    // @FXML private Button mangTratomgButton;
-    // @FXML private Button danaNiariButton;
-    // @FXML private Button kelolaTugasButtonSidebar;
-
+    @FXML private Button kelolaJadwalButtonHeader; 
+    @FXML private Button kelolaTugasButtonHeader;  
+    @FXML private ComboBox<String> filterHariComboBox;
+    @FXML private ComboBox<String> filterTugasStatusComboBox;
+    @FXML private ComboBox<String> filterTugasTenggatComboBox;
 
     private iPenyimpananService penyimpananService;
     private ObservableList<String> jadwalDisplayData;
@@ -44,8 +43,7 @@ public class DashboardController implements Initializable {
     private DataAplikasi dataAplikasiSaatIni;
 
     public DashboardController() {
-        // Inisialisasi penyimpananService
-        this.penyimpananService = new PenyimpananService(); // Instansiasi implementasi konkret
+        this.penyimpananService = new PenyimpananService(); 
     }
 
     @Override
@@ -58,47 +56,87 @@ public class DashboardController implements Initializable {
         jadwalHariIniListView.setItems(jadwalDisplayData);
         tugasMendatangListView.setItems(tugasDisplayData);
 
-        // Panggil metode untuk memuat data awal dari penyimpananService dan menampilkannya
+        // Setup item untuk ComboBox filter
+        filterHariComboBox.setItems(FXCollections.observableArrayList("Semua Hari", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"));
+        filterHariComboBox.setValue("Semua Hari");
+
+        filterTugasStatusComboBox.setItems(FXCollections.observableArrayList("Semua Status", "Belum Selesai", "Selesai"));
+        filterTugasStatusComboBox.setValue("Belum Selesai"); // Default
+
+        filterTugasTenggatComboBox.setItems(FXCollections.observableArrayList("Semua", "Mendekati Tenggat", "Lewat Tenggat"));
+        filterTugasTenggatComboBox.setValue("Semua");
+
+        // Tambahkan listener ke setiap kontrol filter
+        filterHariComboBox.setOnAction(event -> perbaruiTampilanDashboard());
+        filterTugasStatusComboBox.setOnAction(event -> perbaruiTampilanDashboard());
+        filterTugasTenggatComboBox.setOnAction(event -> perbaruiTampilanDashboard());
+
         muatDanTampilkanDataDashboard();
         System.out.println("DashboardController terinisialisasi.");
     }
 
 // di DashboardController.java
-
     private void muatDanTampilkanDataDashboard() {
-        // Panggil penyimpananService.muatSemuaData() untuk mendapatkan dataAplikasiSaatIni
         dataAplikasiSaatIni = penyimpananService.muatSemuaData();
+        perbaruiTampilanDashboard();
+    }
 
-        // Bersihkan jadwalDisplayData dan tugasDisplayData
-        jadwalDisplayData.clear();
-        tugasDisplayData.clear();
+    private void perbaruiTampilanDashboard() {
+    jadwalDisplayData.clear();
+    tugasDisplayData.clear();
 
-        // Dari dataAplikasiSaatIni.getDaftarSesi(), tampilkan SEMUA jadwal
-        if (dataAplikasiSaatIni != null && dataAplikasiSaatIni.getDaftarSesi() != null) {
-            jadwalDisplayData.addAll(
-                dataAplikasiSaatIni.getDaftarSesi().stream()
-                    .map(JadwalSesi::getRingkasanTampilan) // Hanya format dan tampilkan
-                    .collect(Collectors.toList())
-            );
-        }
+    // Ambil nilai filter
+    String filterHari = filterHariComboBox.getValue();
+    String filterStatus = filterTugasStatusComboBox.getValue();
+    String filterTenggat = filterTugasTenggatComboBox.getValue();
 
-        // Dari dataAplikasiSaatIni.getDaftarTugas(), filter hanya yang belum selesai
-        if (dataAplikasiSaatIni != null && dataAplikasiSaatIni.getDaftarTugas() != null) {
-            tugasDisplayData.addAll(
-                dataAplikasiSaatIni.getDaftarTugas().stream()
-                    // .filter(tugas -> !tugas.isSelesai())
-                    .sorted(Comparator.comparing(Tugas::getTanggalTenggat))
-                    .map(Tugas::getRingkasanTampilan)
-                    .collect(Collectors.toList())
-            );
-        }
+    // Filter dan tampilkan jadwal
+    if (dataAplikasiSaatIni != null && dataAplikasiSaatIni.getDaftarSesi() != null) {
+        jadwalDisplayData.addAll(
+            dataAplikasiSaatIni.getDaftarSesi().stream()
+                .filter(sesi -> "Semua Hari".equals(filterHari) || sesi.getHari().equalsIgnoreCase(filterHari))
+                .map(JadwalSesi::getRingkasanTampilan)
+                .collect(Collectors.toList())
+        );
+    }
 
-        // Jika tidak ada jadwal/tugas yang tersimpan, tampilkan pesan yang sesuai di ListView.
+    // Filter dan tampilkan tugas
+    if (dataAplikasiSaatIni != null && dataAplikasiSaatIni.getDaftarTugas() != null) {
+        LocalDate hariIni = LocalDate.now();
+
+        tugasDisplayData.addAll(
+            dataAplikasiSaatIni.getDaftarTugas().stream()
+                .filter(tugas -> { // Filter Status
+                    if ("Belum Selesai".equals(filterStatus)) return !tugas.isSelesai();
+                    if ("Selesai".equals(filterStatus)) return tugas.isSelesai();
+                    return true; // "Semua Status"
+                })
+                .filter(tugas -> { // Filter Tenggat
+                    if ("Mendekati Tenggat".equals(filterTenggat)) {
+                        // Hanya tampilkan yang belum selesai
+                        // dan tenggatnya adalah hari ini ATAU dalam 7 hari ke depan (tidak termasuk yang sudah lewat)
+                        return !tugas.isSelesai() && 
+                               !tugas.getTanggalTenggat().isBefore(hariIni) && 
+                               tugas.getTanggalTenggat().isBefore(hariIni.plusDays(8));
+                    }
+                    if ("Lewat Tenggat".equals(filterTenggat)) {
+                        // HANYA periksa tanggalnya, tidak peduli statusnya
+                        return tugas.getTanggalTenggat().isBefore(hariIni); // Hapus "!tugas.isSelesai() &&"
+                    }
+                    return true;
+                })
+                .sorted(Comparator.comparing(Tugas::getTanggalTenggat))
+                .map(Tugas::getRingkasanTampilan)
+                .collect(Collectors.toList())
+        );
+    }
+
+    // Tampilkan pesan jika kosong
         if (jadwalDisplayData.isEmpty()) {
-            jadwalDisplayData.add("Belum ada jadwal yang tersimpan.");
+            jadwalDisplayData.add("Tidak ada jadwal yang cocok dengan filter.");
         }
         if (tugasDisplayData.isEmpty()) {
-            tugasDisplayData.add("Tidak ada tugas yang perlu dikerjakan.");
+            tugasDisplayData.add("Tidak ada tugas yang cocok dengan filter.");
         }
     }
 
@@ -133,11 +171,4 @@ public class DashboardController implements Initializable {
         gantiScene(event, "ManajemenTugasScene.fxml");
     }
 
-    // TODO (Imam): Tambahkan @FXML metode handler untuk tombol-tombol lain di Dashboard jika ada.
-    // Contoh:
-    // @FXML
-    // private void handleMimeSugurButtonAction(ActionEvent event) {
-    //     System.out.println("Tombol Mime Sugur (Nav/Filter 1) diklik");
-    //     // Implementasikan logika filter atau aksi lainnya
-    // }
 }
