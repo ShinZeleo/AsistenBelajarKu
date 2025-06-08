@@ -21,25 +21,25 @@
     <center>
         <HBox spacing="20.0" BorderPane.alignment="CENTER">
             <padding><Insets top="20.0" right="20.0" bottom="20.0" left="20.0" /></padding>
-
+            
             <VBox fx:id="formContainer" spacing="10.0" prefWidth="350.0" styleClass="form-container"> <Label text="Hari" styleClass="form-label" />
                 <ComboBox fx:id="hariComboBox" prefWidth="1.7976931348623157E308" promptText="Pilih Hari" />
-
+                
                 <Label text="Jam Mulai" styleClass="form-label" />
                 <TextField fx:id="waktuMulaiField" promptText="JJ:MM" />
-
+                
                 <Label text="Jam Selesai" styleClass="form-label" />
                 <TextField fx:id="waktuSelesaiField" promptText="JJ:MM" />
-
+                
                 <Label text="Mata Pelajaran" styleClass="form-label" />
                 <TextField fx:id="mataPelajaranField" promptText="Nama Mata Pelajaran" />
-
+                
                 <Label text="Nama Guru" styleClass="form-label" />
                 <TextField fx:id="namaGuruField" promptText="Nama Guru (Opsional)" />
-
+                
                 <Label text="Ruangan" styleClass="form-label" />
                 <TextField fx:id="ruanganField" promptText="Ruangan (Opsional)" />
-
+                
                 <Button fx:id="tambahSesiButton" onAction="#handleTambahSesiButtonAction" text="Tambah Jadwal Baru" styleClass="button-primary-green" maxWidth="1.7976931348623157E308" />
                 <Button fx:id="bersihkanFormButton" onAction="#handleBersihkanFormButtonAction" text="Bersihkan Form" maxWidth="1.7976931348623157E308" />
             </VBox>
