@@ -26,6 +26,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -52,6 +53,11 @@ public class ManajemenTugasController implements Initializable {
     @FXML private Button hapusTugasButton;
     @FXML private Button bersihkanFormTugasButton;
     @FXML private Button kembaliKeDashboardButtonTugas; // Pastikan fx:id ini ada di FXML
+
+    @FXML private ImageView logoImageView;
+    @FXML private Button minimizeButton;
+    @FXML private Button maximizeButton;
+    @FXML private Button closeButton;
 
     private iPenyimpananService penyimpananService;
     private ObservableList<Tugas> daftarTugasObservable;
@@ -270,5 +276,25 @@ public class ManajemenTugasController implements Initializable {
     private void handleKembaliKeDashboardButtonTugasAction(ActionEvent event) {
         System.out.println("Navigasi kembali ke Dashboard...");
         gantiScene(event, "DashboardScene.fxml");
+    }
+
+    @FXML
+    private void handleMinimizeAction(ActionEvent event) {
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    private void handleMaximizeAction(ActionEvent event) {
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage.setMaximized(!stage.isMaximized());
+    }
+
+    @FXML
+    private void handleCloseAction(ActionEvent event) {
+        // Ambil stage (window) dari elemen yang diklik (yaitu tombol itu sendiri)
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        // Tutup aplikasi
+        stage.close();
     }
 }
