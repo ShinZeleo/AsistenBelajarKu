@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
@@ -41,6 +42,11 @@ public class DashboardController implements Initializable {
     private ObservableList<String> jadwalDisplayData;
     private ObservableList<String> tugasDisplayData;
     private DataAplikasi dataAplikasiSaatIni;
+
+    @FXML private ImageView logoImageView;
+    @FXML private Button minimizeButton;
+    @FXML private Button maximizeButton;
+    @FXML private Button closeButton;
 
     public DashboardController() {
         this.penyimpananService = new PenyimpananService(); 
@@ -153,7 +159,7 @@ public class DashboardController implements Initializable {
         } catch (IOException e) {
             System.err.println("Gagal memuat scene: " + fxmlFile);
             e.printStackTrace();
-            // TODO (Imam): Tampilkan alert ke pengguna jika diperlukan
+            // TODo (Imam): Tampilkan alert ke pengguna jika diperlukan
         }
     }
 
@@ -165,10 +171,30 @@ public class DashboardController implements Initializable {
 
     @FXML
     private void handleKelolaTugasButtonAction(ActionEvent event) {
-        // TODO (Imam): Jika ada dua tombol "Kelola Tugas", pastikan aksinya sesuai atau bedakan method handler-nya.
+        // TODo (Imam): Jika ada dua tombol "Kelola Tugas", pastikan aksinya sesuai atau bedakan method handler-nya.
         //               Untuk saat ini, keduanya akan ke scene yang sama.
         System.out.println("Navigasi ke Manajemen Tugas...");
         gantiScene(event, "ManajemenTugasScene.fxml");
+    }
+
+    @FXML
+    private void handleMinimizeAction(ActionEvent event) {
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    private void handleMaximizeAction(ActionEvent event) {
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage.setMaximized(!stage.isMaximized());
+    }
+
+    @FXML
+    private void handleCloseAction(ActionEvent event) {
+        // Ambil stage (window) dari elemen yang diklik (yaitu tombol itu sendiri)
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        // Tutup aplikasi
+        stage.close();
     }
 
 }

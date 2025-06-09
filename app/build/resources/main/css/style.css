@@ -1,0 +1,161 @@
+/* style.css */
+
+/* --- Global Styling --- */
+.root {
+    -fx-font-family: "System", Arial, sans-serif; /* Menggunakan font sistem yang bersih */
+    -fx-base: #F4F6F8; /* Warna dasar abu-abu sangat muda, mirip prototipe */
+    -fx-background: #F4F6F8;
+    -fx-control-inner-background: #FFFFFF; /* Latar belakang untuk input fields, list, dll. */
+    -fx-focus-color: #007bff; /* Warna fokus (biru) */
+    -fx-accent: #007bff; /* Warna aksen umum */
+}
+
+/* --- Header Styling --- */
+.header-box {
+    -fx-background-color: #FFFFFF; /* Header putih seperti di prototipe */
+    -fx-padding: 15px 25px;
+    -fx-border-color: #E0E0E0; /* Garis bawah tipis */
+    -fx-border-width: 0 0 1px 0;
+    -fx-alignment: center-left;
+}
+
+.app-title { /* Untuk "AsistenBelajarKu" di header */
+    -fx-font-size: 1.8em; /* Lebih besar */
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.page-title { /* Untuk "Dashboard", "Manajemen Tugas", dll. di header kanan */
+    -fx-font-size: 1.5em;
+    -fx-text-fill: #555555;
+    -fx-font-weight: normal;
+}
+
+/* --- Tombol Umum --- */
+.button {
+    -fx-background-radius: 6px; /* Sudut tombol sedikit membulat */
+    -fx-font-weight: bold;
+    -fx-padding: 8px 18px;
+    -fx-cursor: hand;
+}
+
+/* Tombol Utama (Primary) - Warna bisa disesuaikan per scene */
+.button-primary-blue {
+    -fx-background-color: #3B82F6; /* Biru dari prototipe Dashboard */
+    -fx-text-fill: white;
+}
+.button-primary-blue:hover {
+    -fx-background-color: #2563EB;
+}
+
+.button-primary-green {
+    -fx-background-color: #10B981; /* Hijau/Tosca dari prototipe Dashboard & Manajemen Tugas */
+    -fx-text-fill: white;
+}
+.button-primary-green:hover {
+    -fx-background-color: #059669;
+}
+
+/* Tombol Sekunder/Edit */
+.button-secondary {
+    -fx-background-color: #6C757D; /* Abu-abu untuk tombol edit */
+    -fx-text-fill: white;
+}
+.button-secondary:hover {
+    -fx-background-color: #5A6268;
+}
+
+/* Tombol Hapus (Danger) */
+.button-danger {
+    -fx-background-color: #FFFFFF; /* Latar putih */
+    -fx-text-fill: #DC3545; /* Teks merah */
+    -fx-border-color: #DC3545; /* Border merah */
+    -fx-border-width: 1px;
+}
+.button-danger:hover {
+    -fx-background-color: #f8d7da; /* Latar merah muda saat hover */
+}
+
+/* --- Styling untuk Konten Card/Section --- */
+.content-card {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 20px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0.3, 0, 2); /* Bayangan lebih halus */
+}
+
+.section-title-card { /* Judul di dalam card, misal "Jadwal Hari Ini" */
+    -fx-font-size: 1.3em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-padding: 0 0 10px 0; /* Padding bawah */
+}
+
+/* Styling untuk ListView */
+.list-view {
+    -fx-border-color: transparent; /* Hilangkan border default jika card sudah ada border/efek */
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.list-cell { /* Styling untuk setiap item di ListView */
+    -fx-padding: 8px 5px;
+    -fx-border-color: #F0F0F0; /* Garis pemisah antar item */
+    -fx-border-width: 0 0 1px 0;
+    -fx-background-color: transparent;
+}
+.list-cell:empty { /* Sembunyikan border untuk cell kosong */
+    -fx-border-width: 0;
+}
+.list-cell:selected {
+    -fx-background-color: #E0E8F0; /* Warna saat item dipilih */
+}
+
+/* Styling untuk TableView */
+.table-view {
+    -fx-border-color: #DFE2E5;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+}
+.table-view .column-header-background {
+    -fx-background-color: #F4F6F8; /* Warna header kolom */
+}
+.table-view .column-header .label {
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+    -fx-padding: 8px;
+}
+.table-view .table-cell {
+    -fx-padding: 8px;
+    -fx-border-color: #E0E0E0; /* Garis pemisah cell */
+    -fx-border-width: 0 0 1px 0;
+}
+
+/* Styling untuk Form */
+.form-container { /* Untuk VBox atau GridPane yang membungkus form */
+    -fx-padding: 20px;
+    -fx-background-color: #FFFFFF; /* Bisa juga transparan jika sudah ada card */
+    -fx-background-radius: 8px;
+    /* -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0.3, 0, 2); */ /* Jika ingin efek card pada form */
+}
+
+.form-label {
+    -fx-font-size: 0.95em;
+    -fx-text-fill: #444444;
+    -fx-padding: 5px 0 2px 0; /* Padding di atas input field */
+}
+
+.text-field, .text-area, .combo-box, .date-picker {
+    -fx-pref-height: 38px; /* Tinggi standar untuk input field */
+    -fx-font-size: 0.95em;
+    -fx-border-color: #CED4DA;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+.text-area {
+    -fx-pref-height: 80px; /* Tinggi khusus untuk TextArea */
+}
+.text-field:focused, .text-area:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: #007bff; /* Warna border saat fokus */
+    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.25), 5, 0, 0, 0);
+}

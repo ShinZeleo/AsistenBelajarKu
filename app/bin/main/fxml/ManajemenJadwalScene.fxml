@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.ColumnConstraints?> <BorderPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asistenbelajarku.controller.ManajemenJadwalController">
+    <top>
+        <HBox styleClass="header-box" alignment="CENTER_LEFT"> <padding><Insets left="20.0" right="20.0" top="10.0" bottom="10.0" /></padding> <Label styleClass="app-title" text="AsistenBelajarKu" />
+            <HBox HBox.hgrow="ALWAYS" />
+            <Label styleClass="page-title" text="Manajemen Jadwal Pelajaran" />
+        </HBox>
+    </top>
+    <center>
+        <HBox spacing="20.0" BorderPane.alignment="CENTER">
+            <padding><Insets top="20.0" right="20.0" bottom="20.0" left="20.0" /></padding>
+            
+            <VBox fx:id="formContainer" spacing="10.0" prefWidth="350.0" styleClass="form-container"> <Label text="Hari" styleClass="form-label" />
+                <ComboBox fx:id="hariComboBox" prefWidth="1.7976931348623157E308" promptText="Pilih Hari" />
+                
+                <Label text="Jam Mulai" styleClass="form-label" />
+                <TextField fx:id="waktuMulaiField" promptText="JJ:MM" />
+                
+                <Label text="Jam Selesai" styleClass="form-label" />
+                <TextField fx:id="waktuSelesaiField" promptText="JJ:MM" />
+                
+                <Label text="Mata Pelajaran" styleClass="form-label" />
+                <TextField fx:id="mataPelajaranField" promptText="Nama Mata Pelajaran" />
+                
+                <Label text="Nama Guru" styleClass="form-label" />
+                <TextField fx:id="namaGuruField" promptText="Nama Guru (Opsional)" />
+                
+                <Label text="Ruangan" styleClass="form-label" />
+                <TextField fx:id="ruanganField" promptText="Ruangan (Opsional)" />
+                
+                <Button fx:id="tambahSesiButton" onAction="#handleTambahSesiButtonAction" text="Tambah Jadwal Baru" styleClass="button-primary-green" maxWidth="1.7976931348623157E308" />
+                <Button fx:id="bersihkanFormButton" onAction="#handleBersihkanFormButtonAction" text="Bersihkan Form" maxWidth="1.7976931348623157E308" />
+            </VBox>
+
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <TableView fx:id="jadwalTableView" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="kolomHari" prefWidth="100.0" text="Hari" />
+                        <TableColumn fx:id="kolomWaktuMulai" prefWidth="100.0" text="Jam Mulai" /> <TableColumn fx:id="kolomWaktuSelesai" prefWidth="100.0" text="Jam Selesai" />
+                        <TableColumn fx:id="kolomMataPelajaran" prefWidth="200.0" text="Mata Pelajaran" />
+                        <TableColumn fx:id="kolomRuangan" prefWidth="120.0" text="Ruangan" /> </columns>
+                </TableView>
+                <HBox spacing="10.0" alignment="CENTER_RIGHT"> <padding><Insets top="10.0"/></padding>
+                    <Button fx:id="editSesiButton" onAction="#handleEditSesiButtonAction" text="Edit Jadwal Terpilih" styleClass="button-secondary"/> <Button fx:id="hapusSesiButton" onAction="#handleHapusSesiButtonAction" text="Hapus Jadwal Terpilih" styleClass="button-danger" />
+                </HBox>
+            </VBox>
+        </HBox>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" prefHeight="60.0" styleClass="header-box" spacing="10"> <padding><Insets left="20.0" right="20.0" top="10.0" bottom="10.0" /></padding>
+            <Button fx:id="kembaliKeDashboardButton" onAction="#handleKembaliKeDashboardButtonAction" text="Kembali ke Dashboard" />
+        </HBox>
+    </bottom>
+</BorderPane>
