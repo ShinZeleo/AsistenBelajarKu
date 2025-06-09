@@ -11,11 +11,32 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.ColumnConstraints?> <BorderPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asistenbelajarku.controller.ManajemenJadwalController">
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.ComboBox?>
+
+<BorderPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asistenbelajarku.controller.ManajemenJadwalController">
     <top>
-        <HBox styleClass="header-box" alignment="CENTER_LEFT"> <padding><Insets left="20.0" right="20.0" top="10.0" bottom="10.0" /></padding> <Label styleClass="app-title" text="AsistenBelajarKu" />
-            <HBox HBox.hgrow="ALWAYS" />
-            <Label styleClass="page-title" text="Manajemen Jadwal Pelajaran" />
+        <HBox styleClass="header-box" alignment="CENTER_LEFT">
+            <padding><Insets left="20.0" right="20.0" top="10.0" bottom="10.0" /></padding>
+            
+            <ImageView fx:id="logoImageView" fitHeight="50.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../images/logo.png" />
+                </image>
+            </ImageView>
+
+            <HBox HBox.hgrow="ALWAYS" /> <Label styleClass="page-title" text="Manajemen Jadwal Pelajaran" />
+
+            <HBox alignment="CENTER_RIGHT" spacing="5.0">
+                <HBox.margin>
+                    <Insets left="10.0" />
+                </HBox.margin>
+                <Button fx:id="minimizeButton" mnemonicParsing="false" onAction="#handleMinimizeAction" styleClass="window-button" text="─" />
+                <Button fx:id="maximizeButton" mnemonicParsing="false" onAction="#handleMaximizeAction" styleClass="window-button" text="☐" />
+                <Button fx:id="closeButton" mnemonicParsing="false" onAction="#handleCloseAction" styleClass="window-button, window-button-close" text="✘" />
+            </HBox>
         </HBox>
     </top>
     <center>
@@ -48,9 +69,11 @@
                 <TableView fx:id="jadwalTableView" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="kolomHari" prefWidth="100.0" text="Hari" />
-                        <TableColumn fx:id="kolomWaktuMulai" prefWidth="100.0" text="Jam Mulai" /> <TableColumn fx:id="kolomWaktuSelesai" prefWidth="100.0" text="Jam Selesai" />
+                        <TableColumn fx:id="kolomWaktuMulai" prefWidth="100.0" text="Jam Mulai" /> 
+                        <TableColumn fx:id="kolomWaktuSelesai" prefWidth="100.0" text="Jam Selesai" />
                         <TableColumn fx:id="kolomMataPelajaran" prefWidth="200.0" text="Mata Pelajaran" />
-                        <TableColumn fx:id="kolomRuangan" prefWidth="120.0" text="Ruangan" /> </columns>
+                        <TableColumn fx:id="kolomRuangan" prefWidth="120.0" text="Ruangan" /> 
+                    </columns>
                 </TableView>
                 <HBox spacing="10.0" alignment="CENTER_RIGHT"> <padding><Insets top="10.0"/></padding>
                     <Button fx:id="editSesiButton" onAction="#handleEditSesiButtonAction" text="Edit Jadwal Terpilih" styleClass="button-secondary"/> <Button fx:id="hapusSesiButton" onAction="#handleHapusSesiButtonAction" text="Hapus Jadwal Terpilih" styleClass="button-danger" />
@@ -58,9 +81,14 @@
             </VBox>
         </HBox>
     </center>
-    <bottom>
-        <HBox alignment="CENTER_RIGHT" prefHeight="60.0" styleClass="header-box" spacing="10"> <padding><Insets left="20.0" right="20.0" top="10.0" bottom="10.0" /></padding>
-            <Button fx:id="kembaliKeDashboardButton" onAction="#handleKembaliKeDashboardButtonAction" text="Kembali ke Dashboard" />
-        </HBox>
-    </bottom>
+<bottom>
+    <HBox alignment="CENTER" prefHeight="60.0" styleClass="header-box">
+        <padding>
+            <Insets top="10.0" bottom="10.0" />
+        </padding>
+        <HBox HBox.hgrow="ALWAYS" />
+        <Button fx:id="kembaliKeDashboardButton" onAction="#handleKembaliKeDashboardButtonAction" styleClass="button-default" text="Kembali ke Dashboard" />
+        <HBox HBox.hgrow="ALWAYS" />
+    </HBox>
+</bottom>
 </BorderPane>
