@@ -23,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -32,6 +33,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+
+
 
 public class ManajemenJadwalController implements Initializable {
 
@@ -56,6 +60,11 @@ public class ManajemenJadwalController implements Initializable {
     @FXML private Button hapusSesiButton;
     @FXML private Button bersihkanFormButton;
     @FXML private Button kembaliKeDashboardButton;
+
+    @FXML private ImageView logoImageView;
+    @FXML private Button minimizeButton;
+    @FXML private Button maximizeButton;
+    @FXML private Button closeButton;
 
     // --- Atribut Lain ---
     private iPenyimpananService penyimpananService;
@@ -292,5 +301,25 @@ public class ManajemenJadwalController implements Initializable {
     private void handleKembaliKeDashboardButtonAction(ActionEvent event) {
         System.out.println("Navigasi kembali ke Dashboard...");
         gantiScene(event, "DashboardScene.fxml");
+    }
+
+    @FXML
+    private void handleMinimizeAction(ActionEvent event) {
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    private void handleMaximizeAction(ActionEvent event) {
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage.setMaximized(!stage.isMaximized());
+    }
+
+    @FXML
+    private void handleCloseAction(ActionEvent event) {
+        // Ambil stage (window) dari elemen yang diklik (yaitu tombol itu sendiri)
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        // Tutup aplikasi
+        stage.close();
     }
 }
