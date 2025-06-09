@@ -13,14 +13,32 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.ComboBox?>
 
 <BorderPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asistenbelajarku.controller.ManajemenTugasController">
     <top>
-        <HBox styleClass="header-box">
-            <Label styleClass="app-title" text="AsistenBelajarKu" />
-            <HBox HBox.hgrow="ALWAYS" />
-            <Label styleClass="page-title" text="Manajemen Tugas" />
+        <HBox styleClass="header-box" alignment="CENTER_LEFT">
+            <padding><Insets left="20.0" right="20.0" top="10.0" bottom="10.0" /></padding>
+
+            <ImageView fx:id="logoImageView" fitHeight="50.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../images/logo.png" />
+                </image>
+            </ImageView>
+            
+            <HBox HBox.hgrow="ALWAYS" /> <Label styleClass="page-title" text="Manajemen Tugas" />
+
+            <HBox alignment="CENTER_RIGHT" spacing="5.0">
+                <HBox.margin>
+                    <Insets left="10.0" />
+                </HBox.margin>
+                <Button fx:id="minimizeButton" mnemonicParsing="false" onAction="#handleMinimizeAction" styleClass="window-button" text="─" />
+                <Button fx:id="maximizeButton" mnemonicParsing="false" onAction="#handleMaximizeAction" styleClass="window-button" text="☐" />
+                <Button fx:id="closeButton" mnemonicParsing="false" onAction="#handleCloseAction" styleClass="window-button, window-button-close" text="✘" />
+            </HBox>
         </HBox>
     </top>
     <center>
@@ -54,10 +72,14 @@
             </VBox>
         </HBox>
     </center>
-     <bottom>
-        <HBox alignment="CENTER_RIGHT" prefHeight="50.0" styleClass="header-box" spacing="10">
-            <padding><Insets right="20.0" /></padding>
-            <Button fx:id="kembaliKeDashboardButtonTugas" onAction="#handleKembaliKeDashboardButtonTugasAction" text="Kembali ke Dashboard" />
+    <bottom>
+        <HBox alignment="CENTER" prefHeight="60.0" styleClass="header-box">
+            <padding>
+                <Insets top="10.0" bottom="10.0" />
+            </padding>
+            <HBox HBox.hgrow="ALWAYS" />
+            <Button fx:id="kembaliKeDashboardButton" onAction="#handleKembaliKeDashboardButtonTugasAction" styleClass="button-default" text="Kembali ke Dashboard" />
+            <HBox HBox.hgrow="ALWAYS" />
         </HBox>
     </bottom>
 </BorderPane>       
