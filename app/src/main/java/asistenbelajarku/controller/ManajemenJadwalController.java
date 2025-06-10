@@ -44,19 +44,18 @@ public class ManajemenJadwalController implements Initializable {
     @FXML private TableColumn<JadwalSesi, String> kolomHari;
     @FXML private TableColumn<JadwalSesi, LocalTime> kolomWaktuMulai;
     @FXML private TableColumn<JadwalSesi, LocalTime> kolomWaktuSelesai;
-    @FXML private TableColumn<JadwalSesi, String> kolomMataPelajaran; // Akan menampilkan nama mapel
+    @FXML private TableColumn<JadwalSesi, String> kolomMataPelajaran; 
     @FXML private TableColumn<JadwalSesi, String> kolomRuangan;
+    @FXML private TableColumn<JadwalSesi, String> kolomNamaGuru;
 
     @FXML private ComboBox<String> hariComboBox;
     @FXML private TextField waktuMulaiField;
     @FXML private TextField waktuSelesaiField;
-    @FXML private TextField mataPelajaranField; // Untuk nama mapel
-    @FXML private TextField namaGuruField; // Untuk nama guru dari mapel
+    @FXML private TextField mataPelajaranField; 
+    @FXML private TextField namaGuruField; 
     @FXML private TextField ruanganField;
 
-    @FXML private Button tambahSesiButton; // Teks tombol ini bisa berubah (Tambah/Simpan)
-    // Tombol Edit Sesi akan mengambil data dari tabel ke form
-    // @FXML private Button editSesiButton; // Dihapus, karena klik tabel & tombol "Edit Sesi Terpilih" akan mengisi form
+    @FXML private Button tambahSesiButton; 
     @FXML private Button hapusSesiButton;
     @FXML private Button bersihkanFormButton;
     @FXML private Button kembaliKeDashboardButton;
@@ -70,7 +69,7 @@ public class ManajemenJadwalController implements Initializable {
     private iPenyimpananService penyimpananService;
     private ObservableList<JadwalSesi> daftarSesiObservable;
     private DataAplikasi dataAplikasiSaatIni;
-    private JadwalSesi sesiUntukDiedit; // Untuk menampung sesi yang dipilih saat mode edit
+    private JadwalSesi sesiUntukDiedit; 
     private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
     public ManajemenJadwalController() {
@@ -89,6 +88,12 @@ public class ManajemenJadwalController implements Initializable {
         );
         kolomRuangan.setCellValueFactory(new PropertyValueFactory<>("ruangan"));
 
+        kolomNamaGuru.setCellValueFactory(cellData -> {
+            MataPelajaran mapel = cellData.getValue().getMataPelajaran();
+            String namaGuru = (mapel != null && mapel.getNamaGuru() != null) ? mapel.getNamaGuru() : "-";
+            return new javafx.beans.property.SimpleStringProperty(namaGuru);
+        });
+
         // Isi ComboBox hari
         hariComboBox.setItems(FXCollections.observableArrayList("Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"));
 
@@ -99,11 +104,9 @@ public class ManajemenJadwalController implements Initializable {
         jadwalTableView.getSelectionModel().selectedItemProperty().addListener(
             (obs, oldSelection, newSelection) -> {
                 if (newSelection != null) {
-                    // Saat item dipilih, kita siapkan untuk mode edit, tapi jangan langsung isi form.
-                    // Tombol "Edit Jadwal Terpilih" yang akan memicu pengisian form.
                     sesiUntukDiedit = newSelection;
                 } else {
-                    sesiUntukDiedit = null; // Tidak ada yang dipilih
+                    sesiUntukDiedit = null;
                 }
             }
         );
@@ -112,14 +115,13 @@ public class ManajemenJadwalController implements Initializable {
 
     private void tampilkanDetailSesiKeForm(JadwalSesi sesi) {
         if (sesi != null) {
-            // sesiUntukDiedit sudah di-set oleh listener atau tombol edit
             hariComboBox.setValue(sesi.getHari());
             waktuMulaiField.setText(sesi.getWaktuMulai().format(timeFormatter));
             waktuSelesaiField.setText(sesi.getWaktuSelesai().format(timeFormatter));
             mataPelajaranField.setText(sesi.getMataPelajaran().getNamaMapel());
             namaGuruField.setText(sesi.getMataPelajaran().getNamaGuru() != null ? sesi.getMataPelajaran().getNamaGuru() : "");
             ruanganField.setText(sesi.getRuangan() != null ? sesi.getRuangan() : "");
-            tambahSesiButton.setText("Simpan Perubahan"); // Ubah teks tombol
+            tambahSesiButton.setText("Simpan Perubahan"); 
         } else {
             bersihkanForm();
         }
@@ -129,23 +131,18 @@ public class ManajemenJadwalController implements Initializable {
         // Muat data dari penyimpananService
         dataAplikasiSaatIni = penyimpananService.muatSemuaData();
 
-        // Inisialisasi daftarSesiObservable dari dataAplikasiSaatIni.getDaftarSesi()
         if (dataAplikasiSaatIni != null && dataAplikasiSaatIni.getDaftarSesi() != null) {
             daftarSesiObservable = FXCollections.observableArrayList(dataAplikasiSaatIni.getDaftarSesi());
         } else {
             daftarSesiObservable = FXCollections.observableArrayList();
-            // Inisialisasi dataAplikasiSaatIni jika null untuk menghindari NullPointerException
             if (dataAplikasiSaatIni == null) {
                 dataAplikasiSaatIni = new DataAplikasi();
-                // Pastikan list di dalamnya juga terinisialisasi
                 dataAplikasiSaatIni.setDaftarSesi(FXCollections.observableArrayList());
-                // Pastikan daftarMataPelajaran juga diinisialisasi jika akan diakses nanti
                 if (dataAplikasiSaatIni.getDaftarMataPelajaran() == null) {
                     dataAplikasiSaatIni.setDaftarMataPelajaran(FXCollections.observableArrayList());
                 }
             }
         }
-        // Set items untuk jadwalTableView
         jadwalTableView.setItems(daftarSesiObservable);
     }
 
