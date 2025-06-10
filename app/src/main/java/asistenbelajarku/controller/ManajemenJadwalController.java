@@ -4,7 +4,7 @@ import asistenbelajarku.model.DataAplikasi;
 import asistenbelajarku.model.JadwalSesi;
 import asistenbelajarku.model.MataPelajaran;
 import asistenbelajarku.service.iPenyimpananService;
-import asistenbelajarku.service.PenyimpananService; // Implementasi konkret
+import asistenbelajarku.service.PenyimpananService; 
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -156,7 +156,7 @@ public class ManajemenJadwalController implements Initializable {
             if (mapel.getNamaMapel().equalsIgnoreCase(namaMapel) &&
                 ((mapel.getNamaGuru() == null && (namaGuru == null || namaGuru.isEmpty())) ||
                  (mapel.getNamaGuru() != null && mapel.getNamaGuru().equalsIgnoreCase(namaGuru)))) {
-                return mapel; // Kembalikan mapel yang sudah ada
+                return mapel;
             }
         }
         // Jika tidak ditemukan, buat baru dan tambahkan ke list global
@@ -173,7 +173,7 @@ public class ManajemenJadwalController implements Initializable {
         String strWaktuMulai = waktuMulaiField.getText().trim();
         String strWaktuSelesai = waktuSelesaiField.getText().trim();
         String namaMapel = mataPelajaranField.getText().trim();
-        String namaGuru = namaGuruField.getText().trim(); // Ambil nama guru dari field
+        String namaGuru = namaGuruField.getText().trim(); 
         String ruangan = ruanganField.getText().trim();
 
         if (hari == null || strWaktuMulai.isEmpty() || strWaktuSelesai.isEmpty() || namaMapel.isEmpty()) {
@@ -197,37 +197,36 @@ public class ManajemenJadwalController implements Initializable {
 
         MataPelajaran mapel = cariAtauBuatMataPelajaran(namaMapel, namaGuru);
 
-        if (sesiUntukDiedit == null) { // Mode Tambah
+        if (sesiUntukDiedit == null) { 
             String namaDeskriptifSesi = mapel.getNamaMapel() + " (" + hari + ")";
             JadwalSesi sesiBaru = new JadwalSesi(namaDeskriptifSesi, hari, waktuMulai, waktuSelesai, mapel, ruangan);
-            // Pastikan list tidak null sebelum add
+
             if (dataAplikasiSaatIni.getDaftarSesi() == null) {
                 dataAplikasiSaatIni.setDaftarSesi(FXCollections.observableArrayList());
             }
             dataAplikasiSaatIni.getDaftarSesi().add(sesiBaru);
             showAlert(Alert.AlertType.INFORMATION, "Sukses", "Jadwal sesi baru berhasil ditambahkan.");
-        } else { // Mode Edit (sesiUntukDiedit tidak null)
+        } else { 
             sesiUntukDiedit.setHari(hari);
             sesiUntukDiedit.setWaktuMulai(waktuMulai);
             sesiUntukDiedit.setWaktuSelesai(waktuSelesai);
-            sesiUntukDiedit.setMataPelajaran(mapel); // Update mapel juga jika berubah
+            sesiUntukDiedit.setMataPelajaran(mapel); 
             sesiUntukDiedit.setRuangan(ruangan);
-            sesiUntukDiedit.setNamaDeskriptif(mapel.getNamaMapel() + " (" + hari + ")"); // Update nama deskriptif
+            sesiUntukDiedit.setNamaDeskriptif(mapel.getNamaMapel() + " (" + hari + ")"); 
             showAlert(Alert.AlertType.INFORMATION, "Sukses", "Jadwal sesi berhasil diperbarui.");
         }
 
         penyimpananService.simpanSemuaData(dataAplikasiSaatIni);
-        muatDanTampilkanJadwal(); // Refresh tabel
-        bersihkanForm(); // Bersihkan form dan reset mode edit
+        muatDanTampilkanJadwal(); 
+        bersihkanForm(); 
     }
 
     @FXML
     private void handleEditSesiButtonAction(ActionEvent event) {
-        // Fungsi tombol Edit sekarang adalah untuk mengisi form dengan data dari baris tabel yang dipilih
         JadwalSesi sesiTerpilihDariTabel = jadwalTableView.getSelectionModel().getSelectedItem();
         if (sesiTerpilihDariTabel != null) {
-            sesiUntukDiedit = sesiTerpilihDariTabel; // Set ini dulu
-            tampilkanDetailSesiKeForm(sesiUntukDiedit); // Baru isi form
+            sesiUntukDiedit = sesiTerpilihDariTabel; 
+            tampilkanDetailSesiKeForm(sesiUntukDiedit); 
         } else {
             showAlert(Alert.AlertType.WARNING, "Peringatan", "Pilih jadwal sesi yang akan diedit dari tabel.");
         }
@@ -266,16 +265,16 @@ public class ManajemenJadwalController implements Initializable {
         mataPelajaranField.clear();
         namaGuruField.clear();
         ruanganField.clear();
-        sesiUntukDiedit = null; // Reset mode edit
-        tambahSesiButton.setText("Tambah Jadwal Baru"); // Kembalikan teks tombol
-        jadwalTableView.getSelectionModel().clearSelection(); // Bersihkan pilihan di tabel
-        mataPelajaranField.requestFocus(); // Fokus ke field pertama
+        sesiUntukDiedit = null; 
+        tambahSesiButton.setText("Tambah Jadwal Baru"); 
+        jadwalTableView.getSelectionModel().clearSelection(); 
+        mataPelajaranField.requestFocus(); 
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String content) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
-        alert.setHeaderText(null); // Tidak ada header text
+        alert.setHeaderText(null); 
         alert.setContentText(content);
         alert.showAndWait();
     }
@@ -289,7 +288,7 @@ public class ManajemenJadwalController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace(); // Cetak stack trace untuk debugging
+            e.printStackTrace(); 
             showAlert(Alert.AlertType.ERROR, "Error Navigasi", "Tidak dapat memuat halaman '" + fxmlFile + "'.\nDetail: " + e.getMessage());
         }
     }
@@ -314,9 +313,7 @@ public class ManajemenJadwalController implements Initializable {
 
     @FXML
     private void handleCloseAction(ActionEvent event) {
-        // Ambil stage (window) dari elemen yang diklik (yaitu tombol itu sendiri)
         Stage stage = (Stage) closeButton.getScene().getWindow();
-        // Tutup aplikasi
         stage.close();
     }
 }

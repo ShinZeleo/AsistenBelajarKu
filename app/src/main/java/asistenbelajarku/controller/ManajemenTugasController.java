@@ -3,8 +3,8 @@ package asistenbelajarku.controller;
 import asistenbelajarku.model.DataAplikasi;
 import asistenbelajarku.model.MataPelajaran;
 import asistenbelajarku.model.Tugas;
-import asistenbelajarku.service.iPenyimpananService; // Pastikan nama interface ini benar
-import asistenbelajarku.service.PenyimpananService; // Implementasi konkret
+import asistenbelajarku.service.iPenyimpananService; 
+import asistenbelajarku.service.PenyimpananService;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableCell; // Untuk custom cell rendering
+import javafx.scene.control.TableCell; 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -41,18 +41,17 @@ public class ManajemenTugasController implements Initializable {
     @FXML private TableColumn<Tugas, String> kolomDeskripsiTugas;
     @FXML private TableColumn<Tugas, String> kolomMataPelajaranTugas;
     @FXML private TableColumn<Tugas, LocalDate> kolomTenggatWaktuTugas;
-    @FXML private TableColumn<Tugas, Boolean> kolomStatusTugas; // Ini yang menyebabkan NullPointer sebelumnya jika fx:id tidak ada
+    @FXML private TableColumn<Tugas, Boolean> kolomStatusTugas; 
 
     @FXML private TextArea deskripsiTugasArea;
     @FXML private TextField mataPelajaranTugasField;
     @FXML private DatePicker tanggalTenggatPicker;
     @FXML private ComboBox<String> statusTugasComboBox;
 
-    @FXML private Button tambahTugasButton; // Akan diubah teksnya saat mode edit
-    // @FXML private Button editTugasButton; // Tombol ini akan memicu mode edit
+    @FXML private Button tambahTugasButton; 
     @FXML private Button hapusTugasButton;
     @FXML private Button bersihkanFormTugasButton;
-    @FXML private Button kembaliKeDashboardButtonTugas; // Pastikan fx:id ini ada di FXML
+    @FXML private Button kembaliKeDashboardButtonTugas; 
 
     @FXML private ImageView logoImageView;
     @FXML private Button minimizeButton;
@@ -71,15 +70,13 @@ public class ManajemenTugasController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Konfigurasi TableView
-        kolomDeskripsiTugas.setCellValueFactory(new PropertyValueFactory<>("namaDeskriptif")); // Menggunakan dari EntitasAkademik
+        kolomDeskripsiTugas.setCellValueFactory(new PropertyValueFactory<>("namaDeskriptif")); 
         kolomMataPelajaranTugas.setCellValueFactory(cellData -> {
             MataPelajaran mapel = cellData.getValue().getMataPelajaranTerkait();
             return new javafx.beans.property.SimpleStringProperty(mapel != null ? mapel.getNamaMapel() : "-");
         });
         kolomTenggatWaktuTugas.setCellValueFactory(new PropertyValueFactory<>("tanggalTenggat"));
         kolomStatusTugas.setCellValueFactory(new PropertyValueFactory<>("selesai"));
-        // Kustomisasi tampilan kolomStatus (misal, "Selesai" / "Belum Selesai")
         kolomStatusTugas.setCellFactory(column -> new TableCell<Tugas, Boolean>() {
             @Override
             protected void updateItem(Boolean item, boolean empty) {
@@ -103,9 +100,6 @@ public class ManajemenTugasController implements Initializable {
         tugasTableView.getSelectionModel().selectedItemProperty().addListener(
             (obs, oldSelection, newSelection) -> {
                 if (newSelection != null) {
-                    // Sama seperti di Jadwal, klik tabel langsung mengisi form untuk edit
-                    // Jika ingin tombol Edit terpisah, pindahkan logika ini
-                    // tampilkanDetailTugas(newSelection);
                 }
             }
         );
@@ -115,7 +109,7 @@ public class ManajemenTugasController implements Initializable {
     private void tampilkanDetailTugas(Tugas tugas) {
         tugasUntukDiedit = tugas;
         if (tugas != null) {
-            deskripsiTugasArea.setText(tugas.getNamaDeskriptif()); // Atau getDetailDeskripsiTugas()
+            deskripsiTugasArea.setText(tugas.getNamaDeskriptif()); 
             mataPelajaranTugasField.setText(tugas.getMataPelajaranTerkait() != null ? tugas.getMataPelajaranTerkait().getNamaMapel() : "");
             tanggalTenggatPicker.setValue(tugas.getTanggalTenggat());
             statusTugasComboBox.setValue(tugas.isSelesai() ? "Selesai" : "Belum Selesai");
@@ -126,9 +120,8 @@ public class ManajemenTugasController implements Initializable {
     }
 
     private void muatDanTampilkanTugas() {
-        // Muat data dari penyimpananService
         dataAplikasiSaatIni = penyimpananService.muatSemuaData();
-        // Update daftarTugasObservable
+
         if (dataAplikasiSaatIni != null && dataAplikasiSaatIni.getDaftarTugas() != null) {
             daftarTugasObservable = FXCollections.observableArrayList(dataAplikasiSaatIni.getDaftarTugas());
         } else {
@@ -164,12 +157,12 @@ public class ManajemenTugasController implements Initializable {
 
         boolean isSelesai = statusStr.equals("Selesai");
 
-        if (tugasUntukDiedit == null) { // Mode Tambah
-            Tugas tugasBaru = new Tugas(deskripsi, deskripsi, tenggat, mapelTerkait); // namaDeskriptif & detailDeskripsi
+        if (tugasUntukDiedit == null) { 
+            Tugas tugasBaru = new Tugas(deskripsi, deskripsi, tenggat, mapelTerkait); 
             tugasBaru.setSelesai(isSelesai);
             dataAplikasiSaatIni.getDaftarTugas().add(tugasBaru);
             showAlert(Alert.AlertType.INFORMATION, "Sukses", "Tugas baru berhasil ditambahkan.");
-        } else { // Mode Edit
+        } else { 
             tugasUntukDiedit.setNamaDeskriptif(deskripsi);
             tugasUntukDiedit.setDetailDeskripsiTugas(deskripsi);
             tugasUntukDiedit.setTanggalTenggat(tenggat);
@@ -195,9 +188,7 @@ public class ManajemenTugasController implements Initializable {
         if (existingMapel.isPresent()) {
             return existingMapel.get();
         } else {
-            // Untuk tugas, kita bisa asumsikan mapel tanpa guru jika belum ada.
-            // Atau, idealnya, ada cara memilih mapel yang sudah ada.
-            MataPelajaran newMapel = new MataPelajaran(namaMapel, null); // Guru null untuk mapel tugas baru jika tidak spesifik
+            MataPelajaran newMapel = new MataPelajaran(namaMapel, null); 
             dataAplikasiSaatIni.getDaftarMataPelajaran().add(newMapel);
             return newMapel;
         }
@@ -244,7 +235,7 @@ public class ManajemenTugasController implements Initializable {
         deskripsiTugasArea.clear();
         mataPelajaranTugasField.clear();
         tanggalTenggatPicker.setValue(null);
-        statusTugasComboBox.setValue("Belum Selesai"); // Default ke "Belum Selesai"
+        statusTugasComboBox.setValue("Belum Selesai"); 
         tugasUntukDiedit = null;
         tambahTugasButton.setText("Tambah Tugas Baru");
         deskripsiTugasArea.requestFocus();
@@ -292,9 +283,7 @@ public class ManajemenTugasController implements Initializable {
 
     @FXML
     private void handleCloseAction(ActionEvent event) {
-        // Ambil stage (window) dari elemen yang diklik (yaitu tombol itu sendiri)
         Stage stage = (Stage) closeButton.getScene().getWindow();
-        // Tutup aplikasi
         stage.close();
     }
 }

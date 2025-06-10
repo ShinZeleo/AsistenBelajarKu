@@ -112,22 +112,19 @@ public class DashboardController implements Initializable {
 
         tugasDisplayData.addAll(
             dataAplikasiSaatIni.getDaftarTugas().stream()
-                .filter(tugas -> { // Filter Status
+                .filter(tugas -> { 
                     if ("Belum Selesai".equals(filterStatus)) return !tugas.isSelesai();
                     if ("Selesai".equals(filterStatus)) return tugas.isSelesai();
-                    return true; // "Semua Status"
+                    return true; 
                 })
-                .filter(tugas -> { // Filter Tenggat
+                .filter(tugas -> { 
                     if ("Mendekati Tenggat".equals(filterTenggat)) {
-                        // Hanya tampilkan yang belum selesai
-                        // dan tenggatnya adalah hari ini ATAU dalam 7 hari ke depan (tidak termasuk yang sudah lewat)
                         return !tugas.isSelesai() && 
                                !tugas.getTanggalTenggat().isBefore(hariIni) && 
                                tugas.getTanggalTenggat().isBefore(hariIni.plusDays(8));
                     }
                     if ("Lewat Tenggat".equals(filterTenggat)) {
-                        // HANYA periksa tanggalnya, tidak peduli statusnya
-                        return tugas.getTanggalTenggat().isBefore(hariIni); // Hapus "!tugas.isSelesai() &&"
+                        return tugas.getTanggalTenggat().isBefore(hariIni); 
                     }
                     return true;
                 })
@@ -139,10 +136,10 @@ public class DashboardController implements Initializable {
 
     // Tampilkan pesan jika kosong
         if (jadwalDisplayData.isEmpty()) {
-            jadwalDisplayData.add("Tidak ada jadwal yang cocok dengan filter.");
+            jadwalDisplayData.add("Data Kosong / Tidak ada jadwal yang cocok dengan filter.");
         }
         if (tugasDisplayData.isEmpty()) {
-            tugasDisplayData.add("Tidak ada tugas yang cocok dengan filter.");
+            tugasDisplayData.add("Data Kosong / Tidak ada tugas yang cocok dengan filter.");
         }
     }
 
@@ -152,14 +149,11 @@ public class DashboardController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/" + fxmlFile));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
-            // Jika ingin ukuran scene baru sama dengan yang lama (atau preferensi FXML)
-            // Anda bisa juga set ukuran spesifik: new Scene(root, 900, 600);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             System.err.println("Gagal memuat scene: " + fxmlFile);
             e.printStackTrace();
-            // TODo (Imam): Tampilkan alert ke pengguna jika diperlukan
         }
     }
 
@@ -171,8 +165,6 @@ public class DashboardController implements Initializable {
 
     @FXML
     private void handleKelolaTugasButtonAction(ActionEvent event) {
-        // TODo (Imam): Jika ada dua tombol "Kelola Tugas", pastikan aksinya sesuai atau bedakan method handler-nya.
-        //               Untuk saat ini, keduanya akan ke scene yang sama.
         System.out.println("Navigasi ke Manajemen Tugas...");
         gantiScene(event, "ManajemenTugasScene.fxml");
     }
