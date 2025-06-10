@@ -33,9 +33,9 @@
                 <HBox.margin>
                     <Insets left="10.0" />
                 </HBox.margin>
-                <Button fx:id="minimizeButton" mnemonicParsing="false" onAction="#handleMinimizeAction" styleClass="window-button" text="─" />
-                <Button fx:id="maximizeButton" mnemonicParsing="false" onAction="#handleMaximizeAction" styleClass="window-button" text="☐" />
-                <Button fx:id="closeButton" mnemonicParsing="false" onAction="#handleCloseAction" styleClass="window-button, window-button-close" text="✘" />
+            <Button fx:id="minimizeButton" mnemonicParsing="false" onAction="#handleMinimizeAction" styleClass="window-button" text="—" style="-fx-font-size: 14px;"  />
+            <Button fx:id="maximizeButton" mnemonicParsing="false" onAction="#handleMaximizeAction" styleClass="window-button" text="☐" style="-fx-font-size: 14px;" />
+            <Button fx:id="closeButton" mnemonicParsing="false" onAction="#handleCloseAction" styleClass="window-button, window-button-close" text="✘" style="-fx-font-size: 16px;" />
             </HBox>
         </HBox>
     </top>
@@ -43,7 +43,7 @@
         <HBox spacing="20.0" BorderPane.alignment="CENTER">
             <padding><Insets top="20.0" right="20.0" bottom="20.0" left="20.0" /></padding>
             
-            <VBox fx:id="formContainer" spacing="10.0" prefWidth="350.0" styleClass="form-container"> <Label text="Hari" styleClass="form-label" />
+            <VBox fx:id="formContainer" spacing="5.0" prefWidth="350.0" styleClass="form-container"> <Label text="Hari" styleClass="form-label" />
                 <ComboBox fx:id="hariComboBox" prefWidth="1.7976931348623157E308" promptText="Pilih Hari" />
                 
                 <Label text="Jam Mulai" styleClass="form-label" />
@@ -62,7 +62,7 @@
                 <TextField fx:id="ruanganField" promptText="Ruangan (Opsional)" />
                 
                 <Button fx:id="tambahSesiButton" onAction="#handleTambahSesiButtonAction" text="Tambah Jadwal Baru" styleClass="button-primary-green" maxWidth="1.7976931348623157E308" />
-                <Button fx:id="bersihkanFormButton" onAction="#handleBersihkanFormButtonAction" text="Bersihkan Form" maxWidth="1.7976931348623157E308" />
+                <Button fx:id="bersihkanFormButton" onAction="#handleBersihkanFormButtonAction" text="Bersihkan Form" styleClass="button-bersihkan-form" maxWidth="1.7976931348623157E308" />
             </VBox>
 
             <VBox spacing="10.0" HBox.hgrow="ALWAYS">
@@ -72,6 +72,7 @@
                         <TableColumn fx:id="kolomWaktuMulai" prefWidth="100.0" text="Jam Mulai" /> 
                         <TableColumn fx:id="kolomWaktuSelesai" prefWidth="100.0" text="Jam Selesai" />
                         <TableColumn fx:id="kolomMataPelajaran" prefWidth="200.0" text="Mata Pelajaran" />
+                        <TableColumn fx:id="kolomNamaGuru" prefWidth="150.0" text="Nama Guru" /> 
                         <TableColumn fx:id="kolomRuangan" prefWidth="120.0" text="Ruangan" /> 
                     </columns>
                 </TableView>

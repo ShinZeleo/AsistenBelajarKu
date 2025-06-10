@@ -21,13 +21,13 @@
          </ImageView>
          <HBox HBox.hgrow="ALWAYS" /> <Label fx:id="pageTitleLabel" styleClass="page-title" text="Dashboard" />
 
-         <HBox alignment="CENTER_RIGHT" spacing="5.0">
+         <HBox alignment="CENTER_RIGHT" spacing="1.0">
             <HBox.margin>
-               <Insets left="10.0" />
+               <Insets left="20.0" top="-5.0" />
             </HBox.margin>
-            <Button fx:id="minimizeButton" mnemonicParsing="false" onAction="#handleMinimizeAction" styleClass="window-button" text="—" />
-            <Button fx:id="maximizeButton" mnemonicParsing="false" onAction="#handleMaximizeAction" styleClass="window-button" text="☐" />
-            <Button fx:id="closeButton" mnemonicParsing="false" onAction="#handleCloseAction" styleClass="window-button, window-button-close" text="✘" />
+            <Button fx:id="minimizeButton" mnemonicParsing="false" onAction="#handleMinimizeAction" styleClass="window-button" text="—" style="-fx-font-size: 14px;"  />
+            <Button fx:id="maximizeButton" mnemonicParsing="false" onAction="#handleMaximizeAction" styleClass="window-button" text="☐" style="-fx-font-size: 14px;" />
+            <Button fx:id="closeButton" mnemonicParsing="false" onAction="#handleCloseAction" styleClass="window-button, window-button-close" text="✘" style="-fx-font-size: 16px;" />
          </HBox>
       </HBox>
    </top>
@@ -41,7 +41,7 @@
             
             <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 0 0 10 0;">
                   <Label text="Filter Hari:" />
-                  <ComboBox fx:id="filterHariComboBox" promptText="Semua Hari" />
+                  <ComboBox fx:id="filterHariComboBox" prefWidth="100.0" promptText="Semua Hari" />
             </HBox>
             <ListView fx:id="jadwalHariIniListView" VBox.vgrow="ALWAYS" />
          </VBox>
@@ -50,9 +50,9 @@
 
             <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 0 0 10 0;">
                   <Label text="Status:" />
-                  <ComboBox fx:id="filterTugasStatusComboBox" prefWidth="120.0"/>
+                  <ComboBox fx:id="filterTugasStatusComboBox" prefWidth="100.0"/>
                   <Label text="Tenggat:" style="-fx-padding: 0 0 0 10;"/>
-                  <ComboBox fx:id="filterTugasTenggatComboBox" prefWidth="120.0"/>
+                  <ComboBox fx:id="filterTugasTenggatComboBox" prefWidth="100.0"/>
             </HBox>
             <ListView fx:id="tugasMendatangListView" VBox.vgrow="ALWAYS" />
          </VBox>

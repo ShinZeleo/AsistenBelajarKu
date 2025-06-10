@@ -35,16 +35,16 @@
                 <HBox.margin>
                     <Insets left="10.0" />
                 </HBox.margin>
-                <Button fx:id="minimizeButton" mnemonicParsing="false" onAction="#handleMinimizeAction" styleClass="window-button" text="─" />
-                <Button fx:id="maximizeButton" mnemonicParsing="false" onAction="#handleMaximizeAction" styleClass="window-button" text="☐" />
-                <Button fx:id="closeButton" mnemonicParsing="false" onAction="#handleCloseAction" styleClass="window-button, window-button-close" text="✘" />
+            <Button fx:id="minimizeButton" mnemonicParsing="false" onAction="#handleMinimizeAction" styleClass="window-button" text="—" style="-fx-font-size: 14px;"  />
+            <Button fx:id="maximizeButton" mnemonicParsing="false" onAction="#handleMaximizeAction" styleClass="window-button" text="☐" style="-fx-font-size: 14px;" />
+            <Button fx:id="closeButton" mnemonicParsing="false" onAction="#handleCloseAction" styleClass="window-button, window-button-close" text="✘" style="-fx-font-size: 16px;" />
             </HBox>
         </HBox>
     </top>
     <center>
         <HBox spacing="20.0" BorderPane.alignment="CENTER">
             <padding><Insets top="20.0" right="20.0" bottom="20.0" left="20.0" /></padding>
-            <VBox fx:id="formContainerTugas" spacing="10.0" prefWidth="300.0" styleClass="form-container">
+            <VBox fx:id="formContainerTugas" spacing="5.0" prefWidth="350.0" styleClass="form-container">
                 <Label text="Deskripsi Tugas" styleClass="form-label" />
                 <TextArea fx:id="deskripsiTugasArea" prefHeight="100.0" promptText="Deskripsi detail tugas" wrapText="true"/>
                 <Label text="Mata Pelajaran" styleClass="form-label" />
@@ -54,7 +54,7 @@
                 <Label text="Status Penyelesaian" styleClass="form-label" />
                 <ComboBox fx:id="statusTugasComboBox" prefWidth="1.7976931348623157E308" promptText="Pilih Status"/>
                 <Button fx:id="tambahTugasButton" onAction="#handleTambahTugasButtonAction" text="Tambah Tugas Baru" styleClass="button-primary-green" maxWidth="1.7976931348623157E308" />
-                <Button fx:id="bersihkanFormTugasButton" onAction="#handleBersihkanFormTugasButtonAction" text="Bersihkan Form" maxWidth="1.7976931348623157E308" />
+                <Button fx:id="bersihkanFormTugasButton" onAction="#handleBersihkanFormTugasButtonAction" text="Bersihkan Form" styleClass="button-bersihkan-form" maxWidth="1.7976931348623157E308" />
             </VBox>
 
             <VBox spacing="10.0" HBox.hgrow="ALWAYS">
