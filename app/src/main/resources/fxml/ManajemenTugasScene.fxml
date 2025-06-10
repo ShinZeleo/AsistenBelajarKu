@@ -16,12 +16,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.control.ComboBox?>
 
-<BorderPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asistenbelajarku.controller.ManajemenTugasController">
+<BorderPane styleClass="main-container" prefHeight="600.0" prefWidth="900.0" stylesheets="@/css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asistenbelajarku.controller.ManajemenTugasController">
     <top>
         <HBox styleClass="header-box" alignment="CENTER_LEFT">
-            <padding><Insets left="20.0" right="20.0" top="10.0" bottom="10.0" /></padding>
+            <padding><Insets left="20.0" right="20.0" top="5.0" bottom="5.0" /></padding>
 
             <ImageView fx:id="logoImageView" fitHeight="50.0" pickOnBounds="true" preserveRatio="true">
                 <image>
@@ -29,7 +28,9 @@
                 </image>
             </ImageView>
             
-            <HBox HBox.hgrow="ALWAYS" /> <Label styleClass="page-title" text="Manajemen Tugas" />
+            <HBox HBox.hgrow="ALWAYS" />
+            <Label styleClass="page-title" text="Manajemen Tugas"  />
+            <HBox HBox.hgrow="ALWAYS" />
 
             <HBox alignment="CENTER_RIGHT" spacing="5.0">
                 <HBox.margin>

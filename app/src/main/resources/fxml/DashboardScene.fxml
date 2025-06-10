@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ComboBox?>
 
-<BorderPane fx:id="rootPane" prefHeight="650.0" prefWidth="950.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asistenbelajarku.controller.DashboardController">
+<BorderPane fx:id="rootPane" styleClass="main-container" prefHeight="650.0" prefWidth="950.0" stylesheets="@/css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asistenbelajarku.controller.DashboardController">
    <top>
       <HBox fx:id="headerHBox" styleClass="header-box">
          <ImageView fx:id="logoImageView" fitHeight="70.0" pickOnBounds="true" preserveRatio="true">
@@ -19,7 +19,10 @@
                <Image url="@../images/logo.png" />
             </image>
          </ImageView>
-         <HBox HBox.hgrow="ALWAYS" /> <Label fx:id="pageTitleLabel" styleClass="page-title" text="Dashboard" />
+         
+            <HBox HBox.hgrow="ALWAYS" />
+            <Label fx:id="pageTitleLabel" styleClass="page-title" text="Dashboard" />
+            <HBox HBox.hgrow="ALWAYS" />
 
          <HBox alignment="CENTER_RIGHT" spacing="1.0">
             <HBox.margin>
