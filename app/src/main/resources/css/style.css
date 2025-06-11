@@ -142,7 +142,7 @@
 }
 
 .section-title-card {
-    -fx-font-size: 1.3em;
+    -fx-font-size: 1.8em;
     -fx-font-weight: bold;
     -fx-text-fill: -text-primary-color;
     -fx-padding: 0 0 12px 0;
@@ -194,7 +194,7 @@
     -fx-font-size: 0.9em;
     -fx-text-fill: -text-secondary-color;
     -fx-font-weight: 500;
-    -fx-padding: 8px 0 3px 0;
+    -fx-padding: 3px 0 3px 0;
 }
 
 .text-field, .text-area, .combo-box, .date-picker {
