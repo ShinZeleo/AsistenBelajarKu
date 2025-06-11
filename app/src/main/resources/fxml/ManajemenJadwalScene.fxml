@@ -85,7 +85,7 @@
         </HBox>
     </center>
 <bottom>
-    <HBox alignment="CENTER" prefHeight="60.0" styleClass="header-box">
+    <HBox alignment="CENTER" prefHeight="50.0" styleClass="header-box">
         <padding>
             <Insets top="10.0" bottom="10.0" />
         </padding>
