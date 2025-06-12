@@ -1,0 +1,310 @@
+/* --- Color Variables for Modern Theme --- */
+.root {
+    -primary-color: #2563EB;
+    -primary-light-color: #F0F4FF;
+    -secondary-color: #22D3EE;
+    -danger-color: #EF4444;
+    -surface-color: #f9fafc;
+    -background-color: #e8f0fe;
+    -glass-color: rgba(255,255,255,0.75);
+    -text-primary-color: #0F172A;
+    -text-secondary-color: #64748B;
+    -border-color: #CBD5E1;
+    -shadow-color: rgba(30,64,175,0.07);
+    /* Hapus -focus-shadow dan -gradient-header jika tidak dipakai langsung di JavaFX */
+}
+
+/* --- Global Styling --- */
+.root {
+    -fx-font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    -fx-base: -background-color;
+    -fx-background: -background-color;
+    -fx-control-inner-background: -surface-color;
+    -fx-focus-color: -primary-color;
+    -fx-accent: -primary-color;
+    min-width: 820px;
+    max-width: 1100px;
+    min-height: 430px;
+    max-height: 560px;
+}
+
+/* --- Header Styling --- */
+.header-box {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #2563EB, #22D3EE), #ffffffcc;
+    -fx-background-insets: 0;
+    -fx-padding: 18px 32px;
+    -fx-effect: dropshadow(gaussian, rgba(30,64,175,0.10), 16, 0.2, 0, 2);
+    min-height: 48px;
+    border-radius: 16px 16px 0 0;
+}
+/* --- App Titles --- */
+.app-title {
+    -fx-font-size: 1.35em;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 6, 0.5, 0, 2);
+    -fx-letter-spacing: 1.2px;
+}
+.page-title {
+    -fx-font-size: 1.05em;
+    -fx-font-weight: 800;
+    -fx-text-fill: -text-secondary-color;
+}
+
+/* --- Custom Window Control Buttons --- */
+.window-button {
+    -fx-background-color: transparent;
+    -fx-padding: 6px 10px;
+    -fx-text-fill: -text-secondary-color;
+    -fx-border-color: transparent;
+    -fx-font-weight: 700;
+    -fx-background-radius: 12px;
+    -fx-cursor: hand;
+    -fx-font-size: 0.95em;
+    /* Hapus -fx-transition: 0.2s; */
+}
+.window-button:hover {
+    -fx-background-color: #E0E7FF;
+    -fx-text-fill: -primary-color;
+}
+.window-button-close:hover {
+    -fx-background-color: -danger-color;
+    -fx-text-fill: white;
+}
+
+/* --- Layout for Manajemen Jadwal Scene --- */
+.main-content {
+    /* Ganti margin-bottom dengan padding-bottom */
+    /* margin-bottom: 10px; */
+    -fx-padding: 0 0 10px 0;
+    /* flex properties tidak didukung, atur di FXML layout */
+}
+
+/* --- Form kiri: lebih ramping dan pendek --- */
+.form-container {
+    width: 185px;
+    min-width: 165px;
+    max-width: 195px;
+    /* padding: 6px 10px; */
+    height: 230px; 
+    box-sizing: border-box;
+    -fx-padding: 8px 10px;
+    -fx-background-color: -glass-color, -surface-color;
+    -fx-background-radius: 13px;
+    -fx-effect: dropshadow(gaussian, -shadow-color, 16, 0.2, 0, 3);
+    -fx-border-color: #E0E7EF;
+    -fx-border-width: 1.2px;
+}
+.form-label {
+    -fx-font-size: 0.93em;
+    -fx-text-fill: #26282c;
+    -fx-font-weight: 800;
+    -fx-padding: 2.5px 0 2.5px 0;
+}
+.text-field, .text-area, .combo-box, .date-picker {
+    -fx-pref-height: 26px;
+    -fx-font-size: 0.97em;
+    -fx-border-color: #CBD5E1;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-background-color: #F8FAFC;
+    -fx-prompt-text-fill: #A0AEC0;
+    /* -fx-transition: 0.14s; */
+    /* margin-bottom: 6px; --> ganti jadi -fx-padding pada parent VBox/HBox */
+}
+.text-area { -fx-pref-height: 44px; }
+.text-field:focused, .text-area:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: -primary-color;
+    -fx-effect: dropshadow(gaussian, #93C5FD, 6, 0.3, 0, 0);
+    -fx-background-color: #F0F7FF;
+}
+
+/* --- Table kanan: diperlebar dan lebih pendek --- */
+.table-view {
+    flex: 1 1 0;
+    min-width: 400px;
+    max-width: 860px;
+    height: 230px; 
+    box-sizing: border-box;
+    -fx-border-color: #CBD5E1;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-background-color: -glass-color, -surface-color;
+}
+.table-view .column-header-background {
+    -fx-background-color: #F1F5F9;
+}
+.table-view .column-header .label {
+    -fx-text-fill: -primary-color;
+    -fx-font-weight: 700;
+    -fx-padding: 9px 4px;
+    -fx-font-size: 0.97em;
+}
+.table-view .table-cell {
+    -fx-padding: 5px 4px;
+    -fx-border-color: #E0E7EF;
+    -fx-border-width: 0 0 1px 0;
+    -fx-font-size: 0.91em;
+}
+.table-view .table-row-cell:hover {
+    -fx-background-color: #e3edff;
+    -fx-cursor: pointer;
+}
+
+/* --- Card/Section Content --- */
+.content-card {
+    -fx-background-color: -glass-color, -surface-color;
+    -fx-background-radius: 12px;
+    -fx-padding: 14px 16px;
+    -fx-effect: dropshadow(gaussian, -shadow-color, 14, 0.5, 0, 3);
+    -fx-border-color: #E0E7EF;
+    -fx-border-width: 1.1px;
+}
+
+/* --- Tombol bawah/aksi --- */
+.action-buttons {
+    /* Ganti margin-top dengan -fx-padding-top */
+    /* margin-top: 8px; */
+    -fx-padding: 8px 0 0 0;
+    width: 100%;
+    /* gap: 12px; --> gunakan spacing di parent HBox/VBox di FXML */
+}
+.button,
+.button-danger,
+.button-default {
+    min-width: 84px;
+    height: 32px;
+    font-size: 0.93em;
+}
+.dashboard-back-button {
+    /* margin: 0 auto;
+    margin-top: 10px;
+    display: block; */
+    min-width: 150px;
+    height: 32px;
+    font-size: 0.97em;
+    /* Untuk center, atur alignment di VBox/HBox parent atau pakai -fx-alignment di FXML */
+    /* Untuk jarak atas, gunakan -fx-padding pada parent */
+}
+
+/* --- Buttons (Modern) --- */
+.button {
+    -fx-background-radius: 14px;
+    -fx-font-weight: 700;
+    -fx-padding: 8px 14px;
+    -fx-font-size: 0.96em;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, -shadow-color, 8, 0.3, 0, 1);
+    /* -fx-transition: 0.18s; */
+    -fx-border-width: 0;
+}
+.button:hover {
+    -fx-effect: innershadow(gaussian, #c7e0ff, 12, 0, 0, 1);
+}
+.button:focused {
+    -fx-effect: dropshadow(gaussian, #aac7ff, 8, 0.33, 0, 0);
+}
+.button-dashboard-kelola-jadwal, .button-primary-blue {
+    -fx-background-color: -primary-color;
+    -fx-text-fill: white;
+    -fx-shadow-color: #60A5FA;
+}
+.button-dashboard-kelola-jadwal:hover, .button-primary-blue:hover {
+    -fx-background-color: #1D4ED8;
+}
+.button-dashboard-kelola-tugas, .button-primary-green {
+    -fx-background-color: -secondary-color;
+    -fx-text-fill: #0F172A;
+}
+.button-dashboard-kelola-tugas:hover, .button-primary-green:hover {
+    -fx-background-color: #06B6D4;
+    -fx-text-fill: white;
+}
+.button-secondary-edit {
+    -fx-background-color: #6B7280;
+    -fx-text-fill: white;
+}
+.button-secondary-edit:hover {
+    -fx-background-color: #374151;
+}
+.button-danger {
+    -fx-background-color: -danger-color;
+    -fx-text-fill: white;
+}
+.button-danger-outline {
+    -fx-background-color: -surface-color;
+    -fx-text-fill: -danger-color;
+    -fx-border-color: -danger-color;
+    -fx-border-width: 1.2px;
+}
+.button-danger:hover {
+    -fx-background-color: #952a2a;
+}
+.button-bersihkan-form{
+    -fx-background-color: -danger-color;
+    -fx-text-fill: #ffffff;
+}
+.button-bersihkan-form:hover{
+    -fx-background-color: #952a2a;
+}
+.button-default {
+    -fx-background-color: #F1F5F9;
+    -fx-text-fill: #334155;
+}
+.button-default:hover {
+    -fx-background-color: #E0E7EF;
+}
+
+/* --- Section Title --- */
+.section-title-card {
+    -fx-font-size: 1.1em;
+    -fx-font-weight: 800;
+    -fx-text-fill: -primary-color;
+    -fx-padding: 0 0 8px 0;
+    -fx-letter-spacing: 0.5px;
+}
+
+/* --- ListView Dashboard --- */
+.dashboard-list-view, .dashboard-list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+.dashboard-list-view .list-cell {
+    -fx-padding: 7px 4px;
+    -fx-border-color: #E0E7EF;
+    -fx-border-width: 0 0 1px 0;
+    -fx-background-radius: 7px;
+    -fx-font-size: 0.95em;
+    /* -fx-transition: 0.13s; */
+}
+.dashboard-list-view .list-cell:empty { -fx-border-width: 0; }
+.dashboard-list-view .list-cell:selected { 
+    -fx-background-color: -primary-light-color;
+    -fx-text-fill: -primary-color;
+    -fx-font-weight: 700;
+}
+
+/* --- Responsive for Medium/Laptop --- */
+@media (max-width: 1000px) {
+    .root { min-width: 680px; }
+    /* .main-content { gap: 7px; } --> gunakan spacing di parent layout di FXML */
+    .form-container { min-width: 120px; }
+    .table-view { min-width: 280px; }
+}
+
+/* --- Responsive for Tablet --- */
+@media (max-width: 800px) {
+    .root { min-width: 520px; }
+    /* .main-content { flex-direction: column; height: auto; } --> atur di FXML */
+    .form-container, .table-view { width: 100%; min-width: 0; }
+    /* .table-view { margin-top: 8px; } --> pakai -fx-padding-top di parent VBox/HBox di FXML */
+}
+
+/* --- Utility: Custom Scrollbar for Table --- */
+::-webkit-scrollbar-thumb {
+    background: #E0E7EF;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #F8FAFC;
+}

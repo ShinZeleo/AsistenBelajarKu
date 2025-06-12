@@ -1,0 +1,22 @@
+# Gradle
+.gradle
+/build/
+/bin/
+
+# IDE Files
+.idea/
+*.iws
+*.iml
+*.ipr
+/out/
+.vscode/
+
+# Log files
+*.log
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# File data aplikasi
+/asisten_belajar_data.json
