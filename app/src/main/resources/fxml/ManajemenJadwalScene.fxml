@@ -69,6 +69,9 @@
 
             <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                 <TableView fx:id="jadwalTableView" VBox.vgrow="ALWAYS">
+                    <placeholder>
+                        <Label text="📅 Belum ada data, ayo tambahkan jadwal baru!" style="-fx-text-fill:#b0bcd4; -fx-font-size:1.1em;"/>
+                    </placeholder>
                     <columns>
                         <TableColumn fx:id="kolomHari" prefWidth="100.0" text="Hari" />
                         <TableColumn fx:id="kolomWaktuMulai" prefWidth="100.0" text="Jam Mulai" /> 

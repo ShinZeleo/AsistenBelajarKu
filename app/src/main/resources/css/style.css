@@ -1,5 +1,3 @@
-/* Modernized style.css with better scaling for 14" laptop screens */
-
 /* --- Color Variables for Modern Theme --- */
 .root {
     -primary-color: #2563EB;
@@ -29,21 +27,17 @@
     max-width: 1100px;
     min-height: 430px;
     max-height: 560px;
-    /* agar scaling lebih pas di 14 inch */
 }
 
 /* --- Header Styling --- */
 .header-box {
-    -fx-background-color: -gradient-header, -glass-color;
-    -fx-background-insets: 0, 0 0 1px 0;
-    -fx-background-blur: gaussian(10px);
-    -fx-padding: 14px 24px;
-    -fx-border-color: transparent;
-    -fx-alignment: center-left;
-    -fx-effect: dropshadow(gaussian, -shadow-color, 14, 0.2, 0, 2);
-    min-height: 40px;
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #2563EB, #22D3EE), #ffffffcc;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 18px 32px;
+    -fx-effect: dropshadow(gaussian, rgba(30,64,175,0.10), 16, 0.2, 0, 2);
+    min-height: 48px;
+    border-radius: 16px 16px 0 0;
 }
-
 /* --- App Titles --- */
 .app-title {
     -fx-font-size: 1.35em;
@@ -85,7 +79,7 @@
     flex-direction: row;
     align-items: flex-start;
     width: 100%;
-    height: 250px; /* DIPERKECIL */
+    height: 250px; 
     gap: 18px;
     margin-bottom: 10px;
     justify-content: stretch;
@@ -98,7 +92,7 @@
     min-width: 165px;
     max-width: 195px;
     padding: 6px 10px;
-    height: 230px; /* lebih pendek */
+    height: 230px; 
     box-sizing: border-box;
     -fx-padding: 8px 10px;
     -fx-background-color: -glass-color, -surface-color;
@@ -109,8 +103,8 @@
 }
 .form-label {
     -fx-font-size: 0.93em;
-    -fx-text-fill: -text-secondary-color;
-    -fx-font-weight: 600;
+    -fx-text-fill: #26282c;
+    -fx-font-weight: 800;
     -fx-padding: 2.5px 0 2.5px 0;
 }
 .text-field, .text-area, .combo-box, .date-picker {
@@ -135,7 +129,7 @@
     flex: 1 1 0;
     min-width: 400px;
     max-width: 860px;
-    height: 230px; /* lebih pendek */
+    height: 230px; 
     box-sizing: border-box;
     -fx-border-color: #CBD5E1;
     -fx-background-radius: 8px;
@@ -156,6 +150,10 @@
     -fx-border-color: #E0E7EF;
     -fx-border-width: 0 0 1px 0;
     -fx-font-size: 0.91em;
+}
+.table-view .table-row-cell:hover {
+    -fx-background-color: #e3edff;
+    -fx-cursor: pointer;
 }
 
 /* --- Card/Section Content --- */

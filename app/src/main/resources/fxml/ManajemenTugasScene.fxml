@@ -16,6 +16,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.Region?>
 
 <BorderPane styleClass="main-container" prefHeight="600.0" prefWidth="900.0" stylesheets="@/css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="asistenbelajarku.controller.ManajemenTugasController">
     <top>
@@ -54,12 +55,16 @@
                 <DatePicker fx:id="tanggalTenggatPicker" prefWidth="1.7976931348623157E308" promptText="Pilih Tanggal"/>
                 <Label text="Status Penyelesaian" styleClass="form-label" />
                 <ComboBox fx:id="statusTugasComboBox" prefWidth="1.7976931348623157E308" promptText="Pilih Status"/>
+            <Region VBox.vgrow="ALWAYS"/>
                 <Button fx:id="tambahTugasButton" onAction="#handleTambahTugasButtonAction" text="Tambah Tugas Baru" styleClass="button-primary-green" maxWidth="1.7976931348623157E308" />
                 <Button fx:id="bersihkanFormTugasButton" onAction="#handleBersihkanFormTugasButtonAction" text="Bersihkan Form" styleClass="button-bersihkan-form" maxWidth="1.7976931348623157E308" />
             </VBox>
 
             <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                 <TableView fx:id="tugasTableView" VBox.vgrow="ALWAYS">
+                    <placeholder>
+                        <Label text="📅 Belum ada data, ayo tambahkan tugas baru!" style="-fx-text-fill:#b0bcd4; -fx-font-size:1.1em;"/>
+                    </placeholder>
                     <columns>
                         <TableColumn fx:id="kolomDeskripsiTugas" prefWidth="250.0" text="Deskripsi" />
                         <TableColumn fx:id="kolomMataPelajaranTugas" prefWidth="150.0" text="Mata Pelajaran" />
