@@ -1,108 +1,239 @@
-/* style.css */
+/* Modernized style.css with better scaling for 14" laptop screens */
 
-/* --- Variabel Warna untuk Kemudahan Pengelolaan --- */
+/* --- Color Variables for Modern Theme --- */
 .root {
-    -primary-color: #3B82F6; /* Biru Primer (untuk fokus, tombol utama) */
-    -primary-light-color: #ffffff; /* Biru Sangat Muda (untuk hover atau background) */
-    -secondary-color: #10B981; /* Hijau Aksen (untuk tombol tambah/sukses) */
-    -danger-color: #EF4444; /* Merah Bahaya (untuk hapus) - TIDAK DIUBAH */
-    -surface-color: #FFFFFF; /* Warna dasar kartu/permukaan */
-    -background-color: #cde8ff; /* Warna latar belakang window */
-    -text-primary-color: #111827; /* Teks paling gelap */
-    -text-secondary-color: #4B5563; /* Teks abu-abu gelap */
-    -border-color: #E5E7EB; /* Warna border halus */
+    -primary-color: #2563EB;
+    -primary-light-color: #F0F4FF;
+    -secondary-color: #22D3EE;
+    -danger-color: #EF4444;
+    -surface-color: #f9fafc;
+    -background-color: #e8f0fe;
+    -glass-color: rgba(255,255,255,0.75);
+    -text-primary-color: #0F172A;
+    -text-secondary-color: #64748B;
+    -border-color: #CBD5E1;
+    -shadow-color: rgba(30,64,175,0.07);
+    -focus-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+    -gradient-header: linear-gradient(90deg, #2563EB 0%, #22D3EE 100%);
 }
 
 /* --- Global Styling --- */
 .root {
-    -fx-font-family: "System", Arial, sans-serif;
+    -fx-font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
     -fx-base: -background-color;
     -fx-background: -background-color;
     -fx-control-inner-background: -surface-color;
     -fx-focus-color: -primary-color;
     -fx-accent: -primary-color;
+    min-width: 820px;
+    max-width: 1100px;
+    min-height: 430px;
+    max-height: 560px;
+    /* agar scaling lebih pas di 14 inch */
 }
 
 /* --- Header Styling --- */
 .header-box {
-    -fx-background-color: -primary-light-color;
-    -fx-padding: 15px 25px;
-    -fx-border-color: -border-color;
-    -fx-border-width: 0 0 1px 0;
+    -fx-background-color: -gradient-header, -glass-color;
+    -fx-background-insets: 0, 0 0 1px 0;
+    -fx-background-blur: gaussian(10px);
+    -fx-padding: 14px 24px;
+    -fx-border-color: transparent;
     -fx-alignment: center-left;
+    -fx-effect: dropshadow(gaussian, -shadow-color, 14, 0.2, 0, 2);
+    min-height: 40px;
 }
 
-
+/* --- App Titles --- */
 .app-title {
-    -fx-font-size: 1.6em;
+    -fx-font-size: 1.35em;
     -fx-font-weight: bold;
-    -fx-text-fill: -text-primary-color;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 6, 0.5, 0, 2);
+    -fx-letter-spacing: 1.2px;
 }
-
 .page-title {
-    -fx-font-size: 1.4em;
-    -fx-font-weight: bold;
+    -fx-font-size: 1.05em;
+    -fx-font-weight: 800;
     -fx-text-fill: -text-secondary-color;
 }
 
-/* --- Styling untuk Tombol Kontrol Window Kustom --- */
+/* --- Custom Window Control Buttons --- */
 .window-button {
     -fx-background-color: transparent;
-    -fx-padding: 4px 12px;
+    -fx-padding: 6px 10px;
     -fx-text-fill: -text-secondary-color;
     -fx-border-color: transparent;
-    -fx-font-weight: bold;
-    -fx-background-radius: 6px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 12px;
     -fx-cursor: hand;
+    -fx-font-size: 0.95em;
+    -fx-transition: 0.2s;
 }
 .window-button:hover {
-    -fx-background-color: #E5E7EB;
+    -fx-background-color: #E0E7FF;
+    -fx-text-fill: -primary-color;
 }
 .window-button-close:hover {
     -fx-background-color: -danger-color;
     -fx-text-fill: white;
 }
 
-/* --- Tombol Fungsional Umum --- */
-.button {
-    -fx-background-radius: 8px;
-    -fx-font-weight: bold;
-    -fx-padding: 10px 22px;
-    -fx-font-size: 1em;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0.1, 0, 1);
-}
-.button:hover {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0.2, 0, 2);
+/* --- Layout for Manajemen Jadwal Scene --- */
+.main-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    height: 250px; /* DIPERKECIL */
+    gap: 18px;
+    margin-bottom: 10px;
+    justify-content: stretch;
+    box-sizing: border-box;
 }
 
-/* Tombol Dashboard & Primary */
+/* --- Form kiri: lebih ramping dan pendek --- */
+.form-container {
+    width: 185px;
+    min-width: 165px;
+    max-width: 195px;
+    padding: 6px 10px;
+    height: 230px; /* lebih pendek */
+    box-sizing: border-box;
+    -fx-padding: 8px 10px;
+    -fx-background-color: -glass-color, -surface-color;
+    -fx-background-radius: 13px;
+    -fx-effect: dropshadow(gaussian, -shadow-color, 16, 0.2, 0, 3);
+    -fx-border-color: #E0E7EF;
+    -fx-border-width: 1.2px;
+}
+.form-label {
+    -fx-font-size: 0.93em;
+    -fx-text-fill: -text-secondary-color;
+    -fx-font-weight: 600;
+    -fx-padding: 2.5px 0 2.5px 0;
+}
+.text-field, .text-area, .combo-box, .date-picker {
+    -fx-pref-height: 26px;
+    -fx-font-size: 0.97em;
+    -fx-border-color: #CBD5E1;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-background-color: #F8FAFC;
+    -fx-prompt-text-fill: #A0AEC0;
+    -fx-transition: 0.14s;
+}
+.text-area { -fx-pref-height: 44px; }
+.text-field:focused, .text-area:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: -primary-color;
+    -fx-effect: dropshadow(gaussian, #93C5FD, 6, 0.3, 0, 0);
+    -fx-background-color: #F0F7FF;
+}
+
+/* --- Table kanan: diperlebar dan lebih pendek --- */
+.table-view {
+    flex: 1 1 0;
+    min-width: 400px;
+    max-width: 860px;
+    height: 230px; /* lebih pendek */
+    box-sizing: border-box;
+    -fx-border-color: #CBD5E1;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-background-color: -glass-color, -surface-color;
+}
+.table-view .column-header-background {
+    -fx-background-color: #F1F5F9;
+}
+.table-view .column-header .label {
+    -fx-text-fill: -primary-color;
+    -fx-font-weight: 700;
+    -fx-padding: 9px 4px;
+    -fx-font-size: 0.97em;
+}
+.table-view .table-cell {
+    -fx-padding: 5px 4px;
+    -fx-border-color: #E0E7EF;
+    -fx-border-width: 0 0 1px 0;
+    -fx-font-size: 0.91em;
+}
+
+/* --- Card/Section Content --- */
+.content-card {
+    -fx-background-color: -glass-color, -surface-color;
+    -fx-background-radius: 12px;
+    -fx-padding: 14px 16px;
+    -fx-effect: dropshadow(gaussian, -shadow-color, 14, 0.5, 0, 3);
+    -fx-border-color: #E0E7EF;
+    -fx-border-width: 1.1px;
+}
+
+/* --- Tombol bawah/aksi --- */
+.action-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 8px;
+    width: 100%;
+}
+.button,
+.button-danger,
+.button-default {
+    min-width: 84px;
+    height: 32px;
+    font-size: 0.93em;
+}
+.dashboard-back-button {
+    margin: 0 auto;
+    margin-top: 10px;
+    display: block;
+    min-width: 150px;
+    height: 32px;
+    font-size: 0.97em;
+}
+
+/* --- Buttons (Modern) --- */
+.button {
+    -fx-background-radius: 14px;
+    -fx-font-weight: 700;
+    -fx-padding: 8px 14px;
+    -fx-font-size: 0.96em;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, -shadow-color, 8, 0.3, 0, 1);
+    -fx-transition: 0.18s;
+    -fx-border-width: 0;
+}
+.button:hover {
+    -fx-effect: innershadow(gaussian, #c7e0ff, 12, 0, 0, 1);
+    -fx-transform: scale(1.04, 1.04);
+}
+.button:focused {
+    -fx-effect: dropshadow(gaussian, #aac7ff, 8, 0.33, 0, 0);
+}
 .button-dashboard-kelola-jadwal, .button-primary-blue {
     -fx-background-color: -primary-color;
     -fx-text-fill: white;
+    -fx-shadow-color: #60A5FA;
 }
 .button-dashboard-kelola-jadwal:hover, .button-primary-blue:hover {
-    -fx-background-color: #2563EB; /* Biru lebih gelap */
+    -fx-background-color: #1D4ED8;
 }
-
 .button-dashboard-kelola-tugas, .button-primary-green {
     -fx-background-color: -secondary-color;
-    -fx-text-fill: white;
+    -fx-text-fill: #0F172A;
 }
 .button-dashboard-kelola-tugas:hover, .button-primary-green:hover {
-    -fx-background-color: #059669; /* Hijau lebih gelap */
+    -fx-background-color: #06B6D4;
+    -fx-text-fill: white;
 }
-
-/* Tombol Sekunder/Edit */
 .button-secondary-edit {
     -fx-background-color: #6B7280;
     -fx-text-fill: white;
 }
 .button-secondary-edit:hover {
-    -fx-background-color: #4B5563;
+    -fx-background-color: #374151;
 }
-
-/* Tombol Hapus (Danger) - TIDAK DIUBAH SESUAI PERMINTAAN */
 .button-danger {
     -fx-background-color: -danger-color;
     -fx-text-fill: white;
@@ -111,7 +242,7 @@
     -fx-background-color: -surface-color;
     -fx-text-fill: -danger-color;
     -fx-border-color: -danger-color;
-    -fx-border-width: 1.5px;
+    -fx-border-width: 1.2px;
 }
 .button-danger:hover {
     -fx-background-color: #952a2a;
@@ -123,92 +254,64 @@
 .button-bersihkan-form:hover{
     -fx-background-color: #952a2a;
 }
-
-/* Tombol Default/Bersihkan Form */
 .button-default {
-    -fx-background-color: #E5E7EB;
-    -fx-text-fill: #374151;
+    -fx-background-color: #F1F5F9;
+    -fx-text-fill: #334155;
 }
 .button-default:hover {
-    -fx-background-color: #D1D5DB;
+    -fx-background-color: #E0E7EF;
 }
 
-/* --- Styling untuk Konten Card/Section di Dashboard --- */
-.content-card {
-    -fx-background-color: -surface-color;
-    -fx-padding: 25px;
-    -fx-background-radius: 12px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 15, 0.2, 0, 3);
-}
-
+/* --- Section Title --- */
 .section-title-card {
-    -fx-font-size: 1.8em;
-    -fx-font-weight: bold;
-    -fx-text-fill: -text-primary-color;
-    -fx-padding: 0 0 12px 0;
+    -fx-font-size: 1.1em;
+    -fx-font-weight: 800;
+    -fx-text-fill: -primary-color;
+    -fx-padding: 0 0 8px 0;
+    -fx-letter-spacing: 0.5px;
 }
 
-/* Styling untuk ListView di Dashboard */
+/* --- ListView Dashboard --- */
 .dashboard-list-view, .dashboard-list-view .list-cell {
     -fx-background-color: transparent;
     -fx-padding: 0;
 }
 .dashboard-list-view .list-cell {
-    -fx-padding: 10px 5px;
-    -fx-border-color: #F3F4F6;
+    -fx-padding: 7px 4px;
+    -fx-border-color: #E0E7EF;
     -fx-border-width: 0 0 1px 0;
+    -fx-background-radius: 7px;
+    -fx-font-size: 0.95em;
+    -fx-transition: 0.13s;
 }
 .dashboard-list-view .list-cell:empty { -fx-border-width: 0; }
-.dashboard-list-view .list-cell:selected { -fx-background-color: -primary-light-color; }
-
-/* Styling untuk TableView di Halaman Manajemen */
-.table-view {
-    -fx-border-color: #D1D5DB;
-    -fx-background-radius: 8px;
-    -fx-border-radius: 8px;
-}
-.table-view .column-header-background {
-    -fx-background-color: #F9FAFB;
-}
-.table-view .column-header .label {
-    -fx-text-fill: -text-secondary-color;
-    -fx-font-weight: bold;
-    -fx-padding: 12px;
-}
-.table-view .table-cell {
-    -fx-padding: 12px;
-    -fx-border-color: #F3F4F6;
-    -fx-border-width: 0 0 1px 0;
-    -fx-font-size: 0.9em;
+.dashboard-list-view .list-cell:selected { 
+    -fx-background-color: -primary-light-color;
+    -fx-text-fill: -primary-color;
+    -fx-font-weight: 700;
 }
 
-/* Styling untuk Form di Halaman Manajemen */
-.form-container {
-    -fx-padding: 15px;
-    -fx-background-color: -surface-color;
-    -fx-background-radius: 12px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 15, 0.2, 0, 3);
+/* --- Responsive for Medium/Laptop --- */
+@media (max-width: 1000px) {
+    .root { min-width: 680px; }
+    .main-content { gap: 7px; }
+    .form-container { min-width: 120px; }
+    .table-view { min-width: 280px; }
 }
 
-.form-label {
-    -fx-font-size: 0.9em;
-    -fx-text-fill: -text-secondary-color;
-    -fx-font-weight: 500;
-    -fx-padding: 3px 0 3px 0;
+/* --- Responsive for Tablet --- */
+@media (max-width: 800px) {
+    .root { min-width: 520px; }
+    .main-content { flex-direction: column; height: auto; }
+    .form-container, .table-view { width: 100%; min-width: 0; }
+    .table-view { margin-top: 8px; }
 }
 
-.text-field, .text-area, .combo-box, .date-picker {
-    -fx-pref-height: 40px;
-    -fx-font-size: 0.95em;
-    -fx-border-color: #D1D5DB;
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
-    -fx-prompt-text-fill: #9CA3AF;
+/* --- Utility: Custom Scrollbar for Table --- */
+::-webkit-scrollbar-thumb {
+    background: #E0E7EF;
+    border-radius: 10px;
 }
-.text-area {
-    -fx-pref-height: 100px;
-}
-.text-field:focused, .text-area:focused, .combo-box:focused, .date-picker:focused {
-    -fx-border-color: -primary-color;
-    -fx-effect: dropshadow(gaussian, rgba(59,130,246,0.2), 5, 0, 0, 0.5);
+::-webkit-scrollbar-track {
+    background: #F8FAFC;
 }
