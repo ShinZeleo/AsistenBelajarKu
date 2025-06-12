@@ -11,8 +11,7 @@
     -text-secondary-color: #64748B;
     -border-color: #CBD5E1;
     -shadow-color: rgba(30,64,175,0.07);
-    -focus-shadow: 0 0 0 3px rgba(37,99,235,0.12);
-    -gradient-header: linear-gradient(90deg, #2563EB 0%, #22D3EE 100%);
+    /* Hapus -focus-shadow dan -gradient-header jika tidak dipakai langsung di JavaFX */
 }
 
 /* --- Global Styling --- */
@@ -32,7 +31,7 @@
 /* --- Header Styling --- */
 .header-box {
     -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #2563EB, #22D3EE), #ffffffcc;
-    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-insets: 0;
     -fx-padding: 18px 32px;
     -fx-effect: dropshadow(gaussian, rgba(30,64,175,0.10), 16, 0.2, 0, 2);
     min-height: 48px;
@@ -62,7 +61,7 @@
     -fx-background-radius: 12px;
     -fx-cursor: hand;
     -fx-font-size: 0.95em;
-    -fx-transition: 0.2s;
+    /* Hapus -fx-transition: 0.2s; */
 }
 .window-button:hover {
     -fx-background-color: #E0E7FF;
@@ -75,15 +74,10 @@
 
 /* --- Layout for Manajemen Jadwal Scene --- */
 .main-content {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    width: 100%;
-    height: 250px; 
-    gap: 18px;
-    margin-bottom: 10px;
-    justify-content: stretch;
-    box-sizing: border-box;
+    /* Ganti margin-bottom dengan padding-bottom */
+    /* margin-bottom: 10px; */
+    -fx-padding: 0 0 10px 0;
+    /* flex properties tidak didukung, atur di FXML layout */
 }
 
 /* --- Form kiri: lebih ramping dan pendek --- */
@@ -91,7 +85,7 @@
     width: 185px;
     min-width: 165px;
     max-width: 195px;
-    padding: 6px 10px;
+    /* padding: 6px 10px; */
     height: 230px; 
     box-sizing: border-box;
     -fx-padding: 8px 10px;
@@ -115,7 +109,8 @@
     -fx-background-radius: 7px;
     -fx-background-color: #F8FAFC;
     -fx-prompt-text-fill: #A0AEC0;
-    -fx-transition: 0.14s;
+    /* -fx-transition: 0.14s; */
+    /* margin-bottom: 6px; --> ganti jadi -fx-padding pada parent VBox/HBox */
 }
 .text-area { -fx-pref-height: 44px; }
 .text-field:focused, .text-area:focused, .combo-box:focused, .date-picker:focused {
@@ -168,12 +163,11 @@
 
 /* --- Tombol bawah/aksi --- */
 .action-buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    justify-content: flex-end;
-    margin-top: 8px;
+    /* Ganti margin-top dengan -fx-padding-top */
+    /* margin-top: 8px; */
+    -fx-padding: 8px 0 0 0;
     width: 100%;
+    /* gap: 12px; --> gunakan spacing di parent HBox/VBox di FXML */
 }
 .button,
 .button-danger,
@@ -183,12 +177,14 @@
     font-size: 0.93em;
 }
 .dashboard-back-button {
-    margin: 0 auto;
+    /* margin: 0 auto;
     margin-top: 10px;
-    display: block;
+    display: block; */
     min-width: 150px;
     height: 32px;
     font-size: 0.97em;
+    /* Untuk center, atur alignment di VBox/HBox parent atau pakai -fx-alignment di FXML */
+    /* Untuk jarak atas, gunakan -fx-padding pada parent */
 }
 
 /* --- Buttons (Modern) --- */
@@ -199,12 +195,11 @@
     -fx-font-size: 0.96em;
     -fx-cursor: hand;
     -fx-effect: dropshadow(gaussian, -shadow-color, 8, 0.3, 0, 1);
-    -fx-transition: 0.18s;
+    /* -fx-transition: 0.18s; */
     -fx-border-width: 0;
 }
 .button:hover {
     -fx-effect: innershadow(gaussian, #c7e0ff, 12, 0, 0, 1);
-    -fx-transform: scale(1.04, 1.04);
 }
 .button:focused {
     -fx-effect: dropshadow(gaussian, #aac7ff, 8, 0.33, 0, 0);
@@ -280,7 +275,7 @@
     -fx-border-width: 0 0 1px 0;
     -fx-background-radius: 7px;
     -fx-font-size: 0.95em;
-    -fx-transition: 0.13s;
+    /* -fx-transition: 0.13s; */
 }
 .dashboard-list-view .list-cell:empty { -fx-border-width: 0; }
 .dashboard-list-view .list-cell:selected { 
@@ -292,7 +287,7 @@
 /* --- Responsive for Medium/Laptop --- */
 @media (max-width: 1000px) {
     .root { min-width: 680px; }
-    .main-content { gap: 7px; }
+    /* .main-content { gap: 7px; } --> gunakan spacing di parent layout di FXML */
     .form-container { min-width: 120px; }
     .table-view { min-width: 280px; }
 }
@@ -300,9 +295,9 @@
 /* --- Responsive for Tablet --- */
 @media (max-width: 800px) {
     .root { min-width: 520px; }
-    .main-content { flex-direction: column; height: auto; }
+    /* .main-content { flex-direction: column; height: auto; } --> atur di FXML */
     .form-container, .table-view { width: 100%; min-width: 0; }
-    .table-view { margin-top: 8px; }
+    /* .table-view { margin-top: 8px; } --> pakai -fx-padding-top di parent VBox/HBox di FXML */
 }
 
 /* --- Utility: Custom Scrollbar for Table --- */
