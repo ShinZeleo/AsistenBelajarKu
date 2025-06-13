@@ -10,9 +10,9 @@ Aplikasi ini dibuat sebagai Proyek Akhir mata kuliah **Pemrograman Berorientasi 
 
 ## 👥 Tim Pengembang
 
-- **IMAM DZAQHOIR** - (`H071241048`)
-- **RYAN FIRMANSYAH** - (`H071241082`)
-- **AKRAM ALFADLI TAMIR** - (`H071241076`)
+- **[IMAM DZAQHOIR](https://github.com/ShinZeleo)** (`H071241048`)
+- **[RYAN FIRMANSYAH](https://github.com/Ryannfirmansyah)** (`H071241082`)
+- **[AKRAM ALFADLI TAMIR](https://github.com/Akram-Dwf)** (`H071241076`)
 
 ## 🎨 Tema
 
